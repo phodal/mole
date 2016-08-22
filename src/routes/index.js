@@ -15,6 +15,7 @@ import home from './home';
 import contact from './contact';
 import content from './content';
 import error from './error';
+import settings from './settings';
 
 export default {
 
@@ -25,6 +26,7 @@ export default {
     home,
     contact,
     content,
+    settings,
     error,
   ],
 
