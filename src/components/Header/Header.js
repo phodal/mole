@@ -12,7 +12,6 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Header.css';
 import Link from '../Link';
 import Navigation from '../Navigation';
-import logoUrl from './logo-small.png';
 
 function Header() {
   return (
@@ -20,13 +19,8 @@ function Header() {
       <div className={s.container}>
         <Navigation className={s.nav} />
         <Link className={s.brand} to="/">
-          <img src={logoUrl} width="38" height="38" alt="React" />
-          <span className={s.brandTxt}>Your Company</span>
+          <span className={s.brandTxt}>墨乐</span>
         </Link>
-        <div className={s.banner}>
-          <h1 className={s.bannerTitle}>React</h1>
-          <p className={s.bannerDesc}>Complex web apps made easy</p>
-        </div>
       </div>
     </div>
   );
