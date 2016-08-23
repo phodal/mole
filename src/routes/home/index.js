@@ -16,7 +16,7 @@ export default {
   path: '/',
 
   async action() {
-    const resp = await fetch('/graphql', {
+    const resp = await fetch('https://phodal.github.io/mole-test/api/all.json', {
       method: 'post',
       headers: {
         Accept: 'application/json',
