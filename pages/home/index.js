@@ -4,9 +4,6 @@ import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
 
 import Layout from '../../components/Layout';
 import s from './styles.css';
-import PopoverMenu from '../../calypso/popover/menu';
-import Gridicon from '../../calypso/gridicon';
-import CompactCard from '../../calypso/card/compact';
 
 class HomePage extends React.Component {
 
@@ -34,21 +31,6 @@ class HomePage extends React.Component {
             </Card>
           )}
         </div>
-        <CompactCard className="page">
-          <a className="page__title">
-            { title }
-          </a>
-          <Gridicon icon="ellipsis" ref="popoverMenuButton" />
-          <PopoverMenu position={ 'bottom left' }>
-
-          </PopoverMenu>
-          <ReactCSSTransitionGroup
-            transitionName="updated-trans"
-            transitionEnterTimeout={ 300 }
-            transitionLeaveTimeout={ 300 }>
-            { this.buildUpdateTemplate() }
-          </ReactCSSTransitionGroup>
-        </CompactCard>
       </Layout>
     );
   }
