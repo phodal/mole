@@ -14,15 +14,15 @@
 .link {
   display: inline-block;
   text-decoration: none;
-  padding: 0 8px;
-  font-size: 1em;
-  line-height: 1.375; /* ~22px */
+  padding: 0 16px;
+  font-size: 1.2em;
+  line-height: 1.2; /* ~22px */
 }
 
 .link,
 .link:active,
 .link:visited {
-  color: rgba(255, 255, 255, 0.6);
+  color: #fff;
 }
 
 .link:hover {
