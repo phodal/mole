@@ -92,6 +92,7 @@ const config = {
         include: [
           path.resolve(__dirname, './actions'),
           path.resolve(__dirname, './components'),
+          path.resolve(__dirname, './calypso'),
           path.resolve(__dirname, './core'),
           path.resolve(__dirname, './pages'),
           path.resolve(__dirname, './main.js'),
@@ -187,7 +188,7 @@ const config = {
       require('postcss-selector-not')(),
       // Postcss flexbox bug fixer
       // https://github.com/luisrudge/postcss-flexbugs-fixes
-      require('postcss-flexbugs-fixes')(),      
+      require('postcss-flexbugs-fixes')(),
       // Add vendor prefixes to CSS rules using values from caniuse.com
       // https://github.com/postcss/autoprefixer
       require('autoprefixer')(),
