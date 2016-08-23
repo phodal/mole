@@ -17,6 +17,10 @@
   text-decoration: none;
 }
 
+nav a .fa {
+  font-size: 1.2em;
+}
+
 @media screen and (max-width: 1024px) {
 
   .header {
