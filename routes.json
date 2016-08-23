@@ -21,6 +21,10 @@
     "page": "./pages/todolist"
   },
   {
+    "path": "/ideas",
+    "page": "./pages/ideas"
+  },
+  {
     "path": "/tasks/:status(pending|completed)?",
     "page": "./pages/home"
   }

@@ -21,7 +21,11 @@ class TodoListPage extends React.Component {
   render() {
     return (
       <Layout className={s.content}>
-
+        <ul>
+          <li>some todo</li>
+          <li>some todo</li>
+          <li>some todo</li>
+        </ul>
       </Layout>
     );
   }
