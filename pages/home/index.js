@@ -8,9 +8,12 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
 import Layout from '../../components/Layout';
 import s from './styles.css';
+
+import Button from 'react-mdl/lib/Button';
+import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
 
 class HomePage extends React.Component {
 
@@ -25,11 +28,19 @@ class HomePage extends React.Component {
   render() {
     return (
       <Layout className={s.content}>
-        <ul>
+        <div className="note-list">
           {this.props.articles.map((article, i) =>
-            <li key={i}><a href={article.url}>{article.title}</a> by {article.author}</li>
+            <Card shadow={0} key={i}>
+              <CardTitle>{article.title}</CardTitle>
+              <CardText>{article.description}</CardText>
+              <CardActions border>
+                <Button colored>Edit</Button>
+                <Button colored>View</Button>
+                <Button colored>Trash</Button>
+              </CardActions>
+            </Card>
           )}
-        </ul>
+        </div>
         <p>
           <br /><br />
         </p>
