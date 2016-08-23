@@ -11,23 +11,21 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import s from './styles.css';
-import { title, html } from './index.md';
 
-class AboutPage extends React.Component {
+class TodoListPage extends React.Component {
 
   componentDidMount() {
-    document.title = title;
+    document.title = 'TodoList';
   }
 
   render() {
     return (
       <Layout className={s.content}>
-        <h1>{title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+
       </Layout>
     );
   }
 
 }
 
-export default AboutPage;
+export default TodoListPage;

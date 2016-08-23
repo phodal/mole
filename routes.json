@@ -13,12 +13,12 @@
     "chunk": "main"
   },
   {
-    "path": "/about",
-    "page": "./pages/about"
-  },
-  {
     "path": "/settings",
     "page": "./pages/settings"
+  },
+  {
+    "path": "/todolist",
+    "page": "./pages/todolist"
   },
   {
     "path": "/tasks/:status(pending|completed)?",
