@@ -4,7 +4,7 @@
     "page": "./pages/home",
     "chunk": "main",
     "data": {
-      "articles": "GET https://phodal.github.io/mole-test/api/all.json"
+      "data": "GET https://phodal.github.io/mole-test/api/all.json"
     }
   },
   {

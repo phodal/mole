@@ -6,10 +6,13 @@ import Layout from '../../components/Layout';
 import s from './styles.css';
 
 class HomePage extends React.Component {
-
-  static propTypes = {
-    articles: PropTypes.array.isRequired,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles: props.data.content,
+      base_url: props.data.source
+    };
+  }
 
   componentDidMount() {
     document.title = "";
@@ -19,7 +22,7 @@ class HomePage extends React.Component {
     return (
       <Layout className={s.content}>
         <div className="note-list">
-          {this.props.articles.map((article, i) =>
+          {this.state.articles.map((article, i) =>
             <Card shadow={0} key={i} style={{width: '100%', margin: '0 auto 16px'}}>
               <CardTitle>{article.title}</CardTitle>
               <CardText>{article.description}</CardText>

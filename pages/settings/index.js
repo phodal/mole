@@ -9,8 +9,6 @@ class SettingsPage extends React.Component {
     var repo = localStorage.getItem('settings.repo');
     var token = localStorage.getItem('settings.token');
 
-    console.log(repo, token);
-
     if(repo && token) {
       this.state = {
         GITHUB_REPO: repo,
