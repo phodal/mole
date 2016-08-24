@@ -18,8 +18,7 @@
   },
   {
     "path": "/notes/edit",
-    "pattern": "/^\\/notes\\/edit(?:\/(?=$))?$/i",
-    "page": "./pages/notes.edit"
+    "page": "./pages/notes/edit"
   },
   {
     "path": "/todolist",
