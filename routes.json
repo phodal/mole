@@ -22,7 +22,10 @@
   },
   {
     "path": "/todolist",
-    "page": "./pages/todolist"
+    "page": "./pages/todolist",
+    "data": {
+      "data": "GET https://api.github.com/repos/phodal/mole-test/issues/1"
+    }
   },
   {
     "path": "/ideas",
@@ -30,9 +33,5 @@
     "data": {
       "data": "GET https://api.github.com/repos/phodal/ideas/issues"
     }
-  },
-  {
-    "path": "/tasks/:status(pending|completed)?",
-    "page": "./pages/home"
   }
 ]
