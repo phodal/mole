@@ -27,7 +27,7 @@ class HomePage extends React.Component {
               <CardTitle>{article.title}</CardTitle>
               <CardText>{article.description}</CardText>
               <CardActions border>
-                <Button colored><Link to={`/notes/edit?path="${article.path}"`}>Edit</Link></Button>
+                <Button colored><Link to={`/notes/edit?path="${this.state.base_url + article.path}"`}>Edit</Link></Button>
                 <Button colored>View</Button>
                 <Button colored>Trash</Button>
               </CardActions>
