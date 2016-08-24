@@ -17,6 +17,11 @@
     "page": "./pages/settings"
   },
   {
+    "path": "/notes/edit",
+    "pattern": "/^\\/notes\\/edit(?:\/(?=$))?$/i",
+    "page": "./pages/notes.edit"
+  },
+  {
     "path": "/todolist",
     "page": "./pages/todolist"
   },
