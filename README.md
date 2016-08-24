@@ -1,4 +1,4 @@
-# Mole(墨乐) - cloud notes
+# Mole(墨乐) - a github-base note
  
 > A GitHub-base Cloud Note, design for open & free GitHub User.
 
@@ -17,6 +17,15 @@ Platform in Plan:
  - Electron for Desktop (Mac OS, Windows, GNU/Linux)
  - Cordova for Mobile (Android, iOS, Windows Phone)
  - Web
+ 
+ 
+Setup
+---
+
+```
+git clone git@github.com:phodal/mole.git
+npm install
+```
 
 
 License
