@@ -11,6 +11,7 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import s from './styles.css';
+const MarkdownIt = require('markdown-it');
 
 class TodoListPage extends React.Component {
   constructor(props) {
@@ -24,10 +25,40 @@ class TodoListPage extends React.Component {
     document.title = 'TodoList';
   }
 
+  markdownToHtml(content) {
+    return markdown.toHTML(content);
+  }
+
   render() {
+    const md = new MarkdownIt({
+      html: true,
+      linkify: true,
+      highlight: (str, lang) => {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return hljs.highlight(lang, str).value;
+          } catch (err) {
+            console.error(err.stack);
+          } // eslint-disable-line no-console
+        }
+
+        try {
+          return hljs.highlightAuto(str).value;
+        } catch (err) {
+          console.error(err.stack);
+        } // eslint-disable-line no-console
+
+        return '';
+      },
+    });
+    
+    var markdown = {
+      __html: md.render(this.state.todo.body)
+    };
+
     return (
       <Layout className={s.content}>
-        {this.state.todo.body}
+        <div dangerouslySetInnerHTML={markdown}/>
       </Layout>
     );
   }
