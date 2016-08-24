@@ -8,10 +8,12 @@ import s from './styles.css';
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
+    var content = props.data.content;
     this.state = {
-      articles: props.data.content,
+      articles: content,
       base_url: props.data.source
     };
+    localStorage.setItem("content", JSON.stringify(content));
   }
 
   componentDidMount() {
