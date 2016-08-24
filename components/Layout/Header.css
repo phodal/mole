@@ -17,8 +17,8 @@
   text-decoration: none;
 }
 
-nav a .fa {
-  font-size: 1.2em;
+.fa {
+  font-size: 20px;
 }
 
 @media screen and (max-width: 1024px) {
