@@ -132,10 +132,6 @@ const config = {
         ],
       },
       {
-        test: /\.md$/,
-        loader: path.resolve(__dirname, './utils/markdown-loader.js'),
-      },
-      {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         loader: 'url-loader?limit=10000',
       },
