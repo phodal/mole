@@ -28,6 +28,28 @@ npm install
 ```
 
 
+API
+---
+
+Note API in Design
+
+Example: [https://github.com/phodal/mole-test/blob/gh-pages/api/all.json](https://github.com/phodal/mole-test/blob/gh-pages/api/all.json)
+
+```
+{
+    "description": "对于以技术为核心的技术博客来说，人们是冲着他们需要的内容去的，绝大多数情况下都不是在闲逛。如果你的网站里没有他想要的东西的话，他便会离开，人们是出于目的去搜索，基于动机，而不是无聊的在闲逛。无聊的话，他们更多的会去刷刷朋友圈的，看看鸡汤。",
+    "path": "notes/hello-world-2.md",
+    "title": "分析篇：什么样的文章受欢迎？",
+    "created": "2016-08-19T01:37:50+00:00",
+    "updated": "2016-08-23T12:32:53+00:00"
+}
+```
+
+Todo Example: [https://github.com/phodal/mole-test/issues/1](https://github.com/phodal/mole-test/issues/1)
+
+Idea Example: [https://github.com/phodal/ideas/issues](https://github.com/phodal/ideas/issues)
+
+
 License
 ---
 
