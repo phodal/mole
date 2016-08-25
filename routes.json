@@ -2,10 +2,7 @@
   {
     "path": "/",
     "page": "./pages/home",
-    "chunk": "main",
-    "data": {
-      "data": "GET https://phodal.github.io/mole-test/api/all.json"
-    }
+    "chunk": "main"
   },
   {
     "path": "/error",

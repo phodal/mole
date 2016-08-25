@@ -3,7 +3,6 @@ import Layout from '../../components/Layout';
 import s from './styles.css';
 import Button from 'react-mdl/lib/Button';
 import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
-import Link from '../../components/Link';
 
 class IdeasPage extends React.Component {
   constructor(props) {
