@@ -3,6 +3,8 @@ import Layout from '../../../components/Layout';
 import s from './styles.css';
 import {filter} from 'lodash';
 import 'whatwg-fetch';
+import {Editor, EditorState, ContentState, convertFromHTML, RichUtils} from 'draft-js';
+
 const MarkdownIt = require('markdown-it');
 
 class NoteEditPage extends React.Component {
@@ -10,8 +12,21 @@ class NoteEditPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDataReady: false
+      isDataReady: false,
+      editorState: EditorState.createEmpty()
+    };
+
+    this.onChange = (editorState) => this.setState({editorState});
+    this.handleKeyCommand = this.handleKeyCommand.bind(this);
+  }
+
+  handleKeyCommand(command) {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return true;
     }
+    return false;
   }
 
   componentDidMount() {
@@ -29,13 +44,18 @@ class NoteEditPage extends React.Component {
       var basicArticleInfo = filter(articles, {id: id})[0];
       var articleUrl = baseUrl + basicArticleInfo.path;
       fetch(articleUrl)
-        .then(function(response) {
+        .then(function (response) {
           return response.text();
         })
-        .then(function(data) {
+        .then(function (data) {
+          var md = new MarkdownIt({html: true, linkify: true});
+          var renderedHTML = md.render(data);
+          var blocks = convertFromHTML(renderedHTML);
+          var editorState = EditorState.createWithContent(ContentState.createFromBlockArray(blocks));
           self.setState({
             article: data,
-            isDataReady: true
+            isDataReady: true,
+            editorState: editorState
           });
         })
     } else {
@@ -44,18 +64,17 @@ class NoteEditPage extends React.Component {
     }
   }
 
-  renderMarkdown(content) {
-    const md = new MarkdownIt({html: true, linkify: true});
-    return {
-      __html: md.render(content)
-    };
-  }
-
   render() {
     if (this.state.article) {
       return (
         <Layout className={s.content}>
-          <div dangerouslySetInnerHTML={this.renderMarkdown(this.state.article)}></div>
+          <div>
+            <Editor
+              editorState={this.state.editorState}
+              handleKeyCommand={this.handleKeyCommand}
+              onChange={this.onChange}
+            />
+          </div>
         </Layout>
       );
     } else {
