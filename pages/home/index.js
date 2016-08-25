@@ -4,6 +4,7 @@ import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
 import {Dialog, DialogTitle, DialogContent, DialogActions} from 'react-mdl/lib/Dialog';
 import Link from '../../components/Link';
 import Layout from '../../components/Layout';
+import ChangeHistory from '../../components/ChangeHistory';
 import s from './styles.css';
 var moment = require('moment');
 
@@ -29,11 +30,12 @@ class HomePage extends React.Component {
     var self = this;
     var url = 'https://api.github.com/repos/phodal/mole-test/commits?path=' + path;
     fetch(url)
-      .then(function(response) {
-        return response.text();
+      .then(function (response) {
+        return response.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         self.setState({
+          openDialog: true,
           changeTitle: title,
           changeHistory: data
         });
@@ -55,7 +57,6 @@ class HomePage extends React.Component {
   }
 
   render() {
-    var self = this;
     return (
       <Layout className={s.content}>
         <div className="note-list">
@@ -66,7 +67,8 @@ class HomePage extends React.Component {
               <CardActions border>
                 <Button colored>创建时间: {this.renderTime(article.created)}</Button>
                 <Button colored>上次修改: {this.renderTime(article.updated)}</Button>
-                <Button colored onClick={ () => this.handleOpenDialog(article.title, article.path)} raised ripple>修改历史</Button>
+                <Button colored onClick={ () => this.handleOpenDialog(article.title, article.path)} raised
+                        ripple>修改历史</Button>
               </CardActions>
               <CardActions border>
                 <Button colored><Link to={`/notes/edit/${article.id}`}>Edit</Link></Button>
@@ -80,10 +82,12 @@ class HomePage extends React.Component {
         <Dialog open={this.state.openDialog}>
           <DialogTitle>{this.state.changeTitle}</DialogTitle>
           <DialogContent>
-            <p>{this.state.changeHistory}</p>
+            {this.state.changeHistory && this.state.changeHistory.map((changeHistory, i) =>
+              <ChangeHistory key={i} data={changeHistory}></ChangeHistory>
+            )}
           </DialogContent>
           <DialogActions>
-            <Button type='button' onClick={this.handleCloseDialog}>关闭</Button>
+            <Button onClick={this.handleCloseDialog}>关闭</Button>
           </DialogActions>
         </Dialog>
       </Layout>

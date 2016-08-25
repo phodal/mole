@@ -1,0 +1,6 @@
+{
+  "name": "ChangeHistory",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ChangeHistory.js"
+}
