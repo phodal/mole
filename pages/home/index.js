@@ -13,8 +13,15 @@ moment.locale('zh-CN');
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
+    var content = localStorage.getItem("content");
+    if (content) {
+      content = JSON.parse(content)
+    } else {
+      content = [];
+    }
+
     this.state = {
-      articles: [],
+      articles: content,
     };
 
     this.handleOpenDialog = this.handleOpenDialog.bind(this);
