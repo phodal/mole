@@ -21,6 +21,10 @@
     "page": "./pages/notes/edit"
   },
   {
+    "path": "/notes/view/:id",
+    "page": "./pages/notes/view"
+  },
+  {
     "path": "/todolist",
     "page": "./pages/todolist",
     "data": {

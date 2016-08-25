@@ -44,7 +44,7 @@ class HomePage extends React.Component {
               </CardActions>
               <CardActions border>
                 <Button colored><Link to={`/notes/edit/${article.id}`}>Edit</Link></Button>
-                <Button colored>View</Button>
+                <Button colored><Link to={`/notes/view/${article.id}`}>View</Link></Button>
                 <Button colored>Trash</Button>
               </CardActions>
             </Card>
