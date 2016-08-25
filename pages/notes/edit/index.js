@@ -37,7 +37,6 @@ class NoteEditPage extends React.Component {
             article: data,
             isDataReady: true
           });
-          console.log(self.state);
         })
     } else {
       console.log("-----------------------");
