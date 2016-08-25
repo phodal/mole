@@ -17,7 +17,7 @@
     "page": "./pages/settings"
   },
   {
-    "path": "/notes/edit",
+    "path": "/notes/edit/:id",
     "page": "./pages/notes/edit"
   },
   {
