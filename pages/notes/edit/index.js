@@ -3,11 +3,15 @@ import Layout from '../../../components/Layout';
 import s from './styles.css';
 import {filter} from 'lodash';
 import 'whatwg-fetch';
+const MarkdownIt = require('markdown-it');
 
 class NoteEditPage extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      isDataReady: false
+    }
   }
 
   componentWillMount() {
@@ -27,11 +31,26 @@ class NoteEditPage extends React.Component {
           return response.text();
         })
         .then(function (data) {
-          self.setState({article: data})
+          self.setState({
+            article: data,
+            isDataReady: true
+          })
         });
     } else {
       console.log("-----------------------");
       console.log("Back to Home and Refresh");
+    }
+  }
+
+  renderMarkdown(content) {
+    console.log(content);
+
+    // const md = new MarkdownIt({html: true, linkify: true});
+    // return {
+    //   __html: md.render(content)
+    // }
+    return {
+      __html: "<span>test</span>"
     }
   }
 
@@ -40,11 +59,12 @@ class NoteEditPage extends React.Component {
   }
 
   render() {
-    console.log(this.state);
 
     return (
       <Layout className={s.content}>
-        <div>.......</div>
+        {
+          this.state.isDataReady && <div dangerouslySetInnerHTML={this.renderMarkdown(this.state.articles)}></div>
+        }
       </Layout>
     );
   }
