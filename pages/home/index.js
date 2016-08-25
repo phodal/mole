@@ -83,7 +83,7 @@ class HomePage extends React.Component {
           <DialogTitle>{this.state.changeTitle}</DialogTitle>
           <DialogContent>
             {this.state.changeHistory && this.state.changeHistory.map((changeHistory, i) =>
-              <ChangeHistory key={i} data={changeHistory}></ChangeHistory>
+              <ChangeHistory key={i} data={changeHistory} />
             )}
           </DialogContent>
           <DialogActions>
