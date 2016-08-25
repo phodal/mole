@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.phodal.mole"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.phodal.mole"
         }
     },
     "dependent_plugins": {}
