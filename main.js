@@ -38,14 +38,14 @@ function render(location) {
 function startApp() {
   // Handle client-side navigation by using HTML5 History API
 // For more information visit https://github.com/ReactJSTraining/history/tree/master/docs#readme
-  history.listen(render);
-  render(history.getCurrentLocation());
+//   history.listen(render);
+//   render(history.getCurrentLocation());
 
   // HACK for Cordova
-  // history.listen(render);
-  // let loc = history.getCurrentLocation();
-  // loc.pathname = '/';
-  // render(loc);
+  history.listen(render);
+  let loc = history.getCurrentLocation();
+  loc.pathname = '/';
+  render(loc);
 
 // Eliminates the 300ms delay between a physical tap
 // and the firing of a click event on mobile browsers
