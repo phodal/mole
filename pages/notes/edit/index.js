@@ -14,7 +14,9 @@ class NoteEditPage extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    document.title = 'Edit - Note';
+
     var pattern = new RegExp(this.props.route.pattern);
     var result = pattern.exec(window.location.pathname);
     var id = result[1];
@@ -27,15 +29,16 @@ class NoteEditPage extends React.Component {
       var basicArticleInfo = filter(articles, {id: id})[0];
       var articleUrl = baseUrl + basicArticleInfo.path;
       fetch(articleUrl)
-        .then(function (response) {
+        .then(function(response) {
           return response.text();
         })
-        .then(function (data) {
+        .then(function(data) {
           self.setState({
             article: data,
             isDataReady: true
-          })
-        });
+          });
+          console.log(self.state);
+        })
     } else {
       console.log("-----------------------");
       console.log("Back to Home and Refresh");
@@ -43,30 +46,26 @@ class NoteEditPage extends React.Component {
   }
 
   renderMarkdown(content) {
-    console.log(content);
-
-    // const md = new MarkdownIt({html: true, linkify: true});
-    // return {
-    //   __html: md.render(content)
-    // }
+    const md = new MarkdownIt({html: true, linkify: true});
     return {
-      __html: "<span>test</span>"
-    }
-  }
-
-  componentDidMount() {
-    document.title = 'Edit - Note';
+      __html: md.render(content)
+    };
   }
 
   render() {
-
-    return (
-      <Layout className={s.content}>
-        {
-          this.state.isDataReady && <div dangerouslySetInnerHTML={this.renderMarkdown(this.state.articles)}></div>
-        }
-      </Layout>
-    );
+    if (this.state.article) {
+      return (
+        <Layout className={s.content}>
+          <div dangerouslySetInnerHTML={this.renderMarkdown(this.state.article)}></div>
+        </Layout>
+      );
+    } else {
+      return (
+        <Layout className={s.content}>
+          loading....
+        </Layout>
+      )
+    }
   }
 
 }
