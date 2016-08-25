@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 npm run build
-cd MoleApp
+cd mobile
 cordova run ios
