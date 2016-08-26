@@ -2,7 +2,6 @@ import "babel-polyfill";
 import "whatwg-fetch";
 import React from "react";
 import {render} from "react-dom";
-import {Provider} from "react-redux";
 import FastClick from "fastclick";
 import {Router, Route, browserHistory} from "react-router";
 import HomePage from "./pages/home";
@@ -11,24 +10,23 @@ import IdeasPage from "./pages/ideas";
 import NoteEditPage from "./pages/notes/edit";
 import NoteViewPage from "./pages/notes/edit";
 import TodoListPage from "./pages/todolist";
-import store from "./core/store";
 
 function startApp() {
-  render((
-    <Provider store={store}>
-      <Router history={browserHistory}>
-        <Route path="/" component={HomePage}>
-          <Route path="notes" component={HomePage}>
-            <Route path="edit" component={NoteEditPage}/>
-            <Route path="view" component={NoteViewPage}/>
-          </Route>
-          <Route path="ideas" component={IdeasPage}/>
-          <Route path="todolist" component={TodoListPage}/>
-          <Route path="*" component={ErrorPage}/>
+  var routs = (
+    <Router history={browserHistory}>
+      <Route name="app" path="/" component={HomePage}>
+        <Route name="notes" path="/notes" component={HomePage}>
+          <Route path="/edit" component={NoteEditPage}/>
+          <Route path="/view" component={NoteViewPage}/>
         </Route>
-      </Router>
-    </Provider>
-  ), document.getElementById('container'));
+        <Route name="ideas" path="/ideas" handler={IdeasPage}/>
+        <Route name="todolist" path="/todolist" component={TodoListPage}/>
+        <Route path="*" component={ErrorPage}/>
+      </Route>
+    </Router>
+  );
+
+  render(routs, document.getElementById('container'));
 
   FastClick.attach(document.body);
 }
