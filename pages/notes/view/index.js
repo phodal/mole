@@ -55,7 +55,7 @@ class NoteViewPage extends React.Component {
     if (this.state.article) {
       return (
         <Layout className={s.content}>
-          <div dangerouslySetInnerHTML={this.renderMarkdown(this.state.article)}></div>
+          <div className="markdown" dangerouslySetInnerHTML={this.renderMarkdown(this.state.article)}></div>
         </Layout>
       );
     } else {

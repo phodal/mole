@@ -68,7 +68,7 @@ class NoteEditPage extends React.Component {
     if (this.state.article) {
       return (
         <Layout className={s.content}>
-          <div className={s.markdown}>
+          <div className="markdown">
             <Editor
               editorState={this.state.editorState}
               handleKeyCommand={this.handleKeyCommand}
