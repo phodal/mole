@@ -84,10 +84,10 @@ class HomePage extends React.Component {
                 <CardTitle>{article.title}</CardTitle>
                 <CardText>{article.description}</CardText>
                 <CardActions border>
-                  <Button colored>创建时间: {this.renderTime(article.created)}</Button>
-                  <Button colored>上次修改: {this.renderTime(article.updated)}</Button>
+                  <Button colored>创建于: {this.renderTime(article.created)}</Button>
+                  <Button colored>修改于: {this.renderTime(article.updated)}</Button>
                   <Button colored onClick={ () => this.handleOpenDialog(article.title, article.path)} raised
-                          ripple>修改历史</Button>
+                          ripple>历史</Button>
                 </CardActions>
                 <CardActions border>
                   <Button colored><Link to={`/notes/edit/${article.id}`}>Edit</Link></Button>
