@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import Button from 'react-mdl/lib/Button';
+import Spinner from 'react-mdl/lib/Spinner';
 import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
 import {Dialog, DialogTitle, DialogContent, DialogActions} from 'react-mdl/lib/Dialog';
 import Link from '../../components/Link';
@@ -113,7 +114,7 @@ class HomePage extends React.Component {
     } else {
       return (
         <Layout className={s.content}>
-          loading....
+          <Spinner />
         </Layout>
       )
     }
