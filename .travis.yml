@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - '6'
+  
+notifications:
+  email: false
+
 env:
   - CXX=g++-4.8
 addons:
