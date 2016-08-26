@@ -11,6 +11,10 @@
   word-wrap: break-word;
 }
 
+.markdown blockquote {
+  font-size: 16px;
+}
+
 .markdown .pl-c {
   color: #969896;
 }
