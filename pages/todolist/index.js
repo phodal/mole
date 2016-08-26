@@ -22,7 +22,6 @@ class TodoListPage extends React.Component {
         return response.json();
       })
       .then(function (data) {
-        console.log(data.body);
         self.setState({
           todo: data
         });
