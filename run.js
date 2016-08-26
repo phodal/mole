@@ -64,8 +64,7 @@ tasks.set('build', () => {
   return Promise.resolve()
     .then(() => run('clean'))
     .then(() => run('bundle'))
-    .then(() => run('html'))
-    .then(() => run('sitemap'));
+    .then(() => run('html'));
 });
 
  tasks.set('publish', () => {
