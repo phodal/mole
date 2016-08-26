@@ -60,7 +60,7 @@ class HomePage extends React.Component {
         return response.json();
       })
       .then(function (data) {
-        localStorage.setItem("base_url", data.baseUrl);
+        localStorage.setItem("base_url", data.source);
         localStorage.setItem("content", JSON.stringify(data.content));
 
         self.setState({
