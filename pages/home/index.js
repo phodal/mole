@@ -34,10 +34,10 @@ class HomePage extends React.Component {
     var self = this;
     var url = 'https://api.github.com/repos/phodal/mole-test/commits?path=' + path;
     fetch(url)
-      .then(function (response) {
+      .then(function(response) {
         return response.json();
       })
-      .then(function (data) {
+      .then(function(data) {
         self.setState({
           openDialog: true,
           changeTitle: title,
@@ -58,10 +58,10 @@ class HomePage extends React.Component {
 
     var api = "https://phodal.github.io/mole-test/api/all.json";
     fetch(api)
-      .then(function (response) {
+      .then(function(response) {
         return response.json();
       })
-      .then(function (data) {
+      .then(function(data) {
         localStorage.setItem("base_url", data.source);
         localStorage.setItem("content", JSON.stringify(data.content));
 
@@ -91,16 +91,19 @@ class HomePage extends React.Component {
                           ripple>历史</Button>
                 </CardActions>
                 <CardActions border>
-                  <Button colored><Link to={`/notes/edit/${article.id}`}>Edit</Link></Button>
-                  <Button colored><Link to={`/notes/view/${article.id}`}>View</Link></Button>
-                  <Button colored>Trash</Button>
+                  <ul className={s.cardAction}>
+                    <li><Link to={`/notes/edit/${article.id}`}><Button raised ripple>编辑</Button></Link></li>
+                    <li><Link to={`/notes/view/${article.id}`}><Button raised ripple>查看</Button></Link></li>
+                    <li><Button raised ripple>删除</Button></li>
+                  </ul>
                 </CardActions>
               </Card>
             )}
           </div>
 
-          <FABButton colored style={{float: "right", position: "absolute", right: "20px", bottom: "20px" ,zIndex: "100"}}>
-            <i className="fa fa-plus" />
+          <FABButton colored
+                     style={{float: "right", position: "absolute", right: "20px", bottom: "20px", zIndex: "100"}}>
+            <i className="fa fa-plus"/>
           </FABButton>
 
           <Dialog open={this.state.openDialog}>

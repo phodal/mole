@@ -1,3 +1,18 @@
 .content {
   padding: 16px 16px;
 }
+
+.cardAction {
+  padding-top: 4px ;
+  padding-bottom: 4px ;
+  margin: 0;
+}
+
+.cardAction li {
+  display: inline-block;
+  width: 33%;
+}
+
+.cardAction li a {
+  text-decoration: none;
+}
