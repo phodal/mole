@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import Button from 'react-mdl/lib/Button';
+import FABButton from 'react-mdl/lib/FABButton';
 import Spinner from 'react-mdl/lib/Spinner';
 import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
 import {Dialog, DialogTitle, DialogContent, DialogActions} from 'react-mdl/lib/Dialog';
@@ -78,6 +79,9 @@ class HomePage extends React.Component {
     if (this.state.articles) {
       return (
         <Layout className={s.content}>
+          <FABButton colored>
+            <i className="fa fa-plus" />
+          </FABButton>
           <div className="note-list">
             {this.state.articles.map((article, i) =>
               <Card shadow={0} key={i} style={{width: '100%', margin: '0 auto 16px'}}>
