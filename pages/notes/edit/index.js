@@ -4,6 +4,7 @@ import s from './styles.css';
 import {filter} from 'lodash';
 import 'whatwg-fetch';
 import {Editor, EditorState, ContentState, convertFromHTML, RichUtils} from 'draft-js';
+import Spinner from 'react-mdl/lib/Spinner';
 
 const MarkdownIt = require('markdown-it');
 
@@ -32,9 +33,7 @@ class NoteEditPage extends React.Component {
   componentDidMount() {
     document.title = 'Edit - Note';
 
-    var pattern = new RegExp(this.props.route.pattern);
-    var result = pattern.exec(window.location.pathname);
-    var id = result[1];
+    var id = this.props.routeParams.id;
     var content = localStorage.getItem("content");
     var baseUrl = localStorage.getItem("base_url");
     var self = this;
@@ -80,7 +79,7 @@ class NoteEditPage extends React.Component {
     } else {
       return (
         <Layout className={s.content}>
-          loading....
+          <Spinner />
         </Layout>
       )
     }

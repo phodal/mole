@@ -4,6 +4,7 @@ import s from './styles.css';
 import {filter} from 'lodash';
 import 'whatwg-fetch';
 const MarkdownIt = require('markdown-it');
+import Spinner from 'react-mdl/lib/Spinner';
 
 class NoteViewPage extends React.Component {
 
@@ -17,9 +18,7 @@ class NoteViewPage extends React.Component {
   componentDidMount() {
     document.title = 'View - Note';
 
-    var pattern = new RegExp(this.props.route.pattern);
-    var result = pattern.exec(window.location.pathname);
-    var id = result[1];
+    var id = this.props.routeParams.id;
     var content = localStorage.getItem("content");
     var baseUrl = localStorage.getItem("base_url");
     var self = this;
@@ -61,7 +60,7 @@ class NoteViewPage extends React.Component {
     } else {
       return (
         <Layout className={s.content}>
-          loading....
+          <Spinner />
         </Layout>
       )
     }

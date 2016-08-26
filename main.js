@@ -16,10 +16,9 @@ function startApp() {
   var routes = (
     <Router history={hashHistory}>
       <Route path="/">
-        <IndexRoute name="notes" component={HomePage}>
-          <Route path="/edit/:id" component={NoteEditPage}/>
-          <Route path="/view/:id" component={NoteViewPage}/>
-        </IndexRoute>
+        <IndexRoute name="notes" component={HomePage} />
+        <Route name="notes.edit" path="/notes/edit/:id" component={NoteEditPage}/>
+        <Route name="notes.view" path="/notes/view/:id" component={NoteViewPage}/>
         <Route name="ideas" path="/ideas" component={IdeasPage}/>
         <Route name="todolist" path="/todolist" component={TodoListPage}/>
         <Route name="settings" path="/settings" component={SettingsPage}/>

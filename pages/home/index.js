@@ -3,7 +3,7 @@ import Button from 'react-mdl/lib/Button';
 import Spinner from 'react-mdl/lib/Spinner';
 import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
 import {Dialog, DialogTitle, DialogContent, DialogActions} from 'react-mdl/lib/Dialog';
-import Link from '../../components/Link';
+import {Link} from 'react-router'
 import Layout from '../../components/Layout';
 import ChangeHistory from '../../components/ChangeHistory';
 import s from './styles.css';
