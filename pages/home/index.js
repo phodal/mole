@@ -102,7 +102,7 @@ class HomePage extends React.Component {
           </div>
 
           <FABButton colored
-                     style={{float: "right", position: "absolute", right: "20px", bottom: "20px", zIndex: "100"}}>
+                     style={{float: "right", position: "fixed", right: "20px", bottom: "20px", zIndex: "100"}}>
             <i className="fa fa-plus"/>
           </FABButton>
 
