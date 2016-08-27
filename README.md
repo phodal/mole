@@ -31,7 +31,7 @@ npm install
 API
 ---
 
-Note API in Design
+### Note API in Design
 
 Example: [https://github.com/phodal/mole-test/blob/gh-pages/api/all.json](https://github.com/phodal/mole-test/blob/gh-pages/api/all.json)
 
@@ -45,15 +45,18 @@ Example: [https://github.com/phodal/mole-test/blob/gh-pages/api/all.json](https:
 }
 ```
 
+### GitHub API
+
 Todo Example: [https://github.com/phodal/mole-test/issues/1](https://github.com/phodal/mole-test/issues/1)
 
 Idea Example: [https://github.com/phodal/ideas/issues](https://github.com/phodal/ideas/issues)
 
-
-GitHub API
-----------
-
 Commit History: [https://api.github.com/repos/phodal/mole-test/commits?path=notes/hello-world.md](https://api.github.com/repos/phodal/mole-test/commits?path=notes/hello-world.md)
+
+TODO
+---
+
+ - Localstorage 回收。 Localstorage 的存储大小为5M。
 
 License
 ---
