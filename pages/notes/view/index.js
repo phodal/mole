@@ -12,6 +12,10 @@ class NoteViewPage extends React.Component {
     super(props);
     this.state = {
       isDataReady: false
+    };
+    const note = localStorage.getItem("note." + this.props.routeParams.id);
+    if(note){
+      this.state.article = note;
     }
   }
 
@@ -32,6 +36,8 @@ class NoteViewPage extends React.Component {
           return response.text();
         })
         .then(function(data) {
+          localStorage.setItem("note." + id, data);
+          
           self.setState({
             article: data,
             isDataReady: true
