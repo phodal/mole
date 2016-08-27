@@ -33,7 +33,7 @@ function startApp() {
 
   // Enable Hot Module Replacement (HMR)
   if (module.hot) {
-    
+
   }
 }
 

@@ -3,8 +3,8 @@ import Layout from '../../../components/Layout';
 import s from './styles.css';
 import {filter} from 'lodash';
 import 'whatwg-fetch';
-import {Editor, EditorState, ContentState, convertFromHTML, RichUtils} from 'draft-js';
 import Spinner from 'react-mdl/lib/Spinner';
+import EditorSection from "../../../components/EditorSection";
 
 const MarkdownIt = require('markdown-it');
 
@@ -14,20 +14,7 @@ class NoteEditPage extends React.Component {
     super(props);
     this.state = {
       isDataReady: false,
-      editorState: EditorState.createEmpty()
     };
-
-    this.onChange = (editorState) => this.setState({editorState});
-    this.handleKeyCommand = this.handleKeyCommand.bind(this);
-  }
-
-  handleKeyCommand(command) {
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
-    if (newState) {
-      this.onChange(newState);
-      return true;
-    }
-    return false;
   }
 
   componentDidMount() {
@@ -49,12 +36,9 @@ class NoteEditPage extends React.Component {
         .then(function (data) {
           var md = new MarkdownIt({html: true, linkify: true});
           var renderedHTML = md.render(data);
-          var blocks = convertFromHTML(renderedHTML);
-          var editorState = EditorState.createWithContent(ContentState.createFromBlockArray(blocks));
           self.setState({
-            article: data,
-            isDataReady: true,
-            editorState: editorState
+            article: renderedHTML,
+            isDataReady: true
           });
         })
     } else {
@@ -68,11 +52,7 @@ class NoteEditPage extends React.Component {
       return (
         <Layout className={s.content}>
           <div className="markdown">
-            <Editor
-              editorState={this.state.editorState}
-              handleKeyCommand={this.handleKeyCommand}
-              onChange={this.onChange}
-            />
+            <EditorSection content={this.state.article} />
           </div>
         </Layout>
       );
