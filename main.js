@@ -8,7 +8,7 @@ import HomePage from "./pages/home";
 import ErrorPage from "./pages/error";
 import IdeasPage from "./pages/ideas";
 import NoteEditPage from "./pages/notes/edit";
-import NoteViewPage from "./pages/notes/edit";
+import NoteViewPage from "./pages/notes/view";
 import TodoListPage from "./pages/todolist";
 import SettingsPage from "./pages/settings";
 
