@@ -37,7 +37,7 @@ class NoteViewPage extends React.Component {
         })
         .then(function(data) {
           localStorage.setItem("note." + id, data);
-          
+
           self.setState({
             article: data,
             isDataReady: true

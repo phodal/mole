@@ -30,6 +30,11 @@ function startApp() {
   render(routes, document.getElementById('container'));
 
   FastClick.attach(document.body);
+
+  // Enable Hot Module Replacement (HMR)
+  if (module.hot) {
+    
+  }
 }
 
 if (window.cordova) {
