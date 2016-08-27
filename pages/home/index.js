@@ -107,8 +107,9 @@ class HomePage extends React.Component {
           </FABButton>
 
           <Dialog open={this.state.openDialog}>
-            <DialogTitle>{this.state.changeTitle}</DialogTitle>
+            <DialogTitle>修改历史</DialogTitle>
             <DialogContent>
+              <h4>{this.state.changeTitle}</h4>
               {this.state.changeHistory && this.state.changeHistory.map((changeHistory, i) =>
                 <ChangeHistory key={i} data={changeHistory}/>
               )}
