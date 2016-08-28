@@ -22,7 +22,6 @@ class Header extends React.Component {
           <div className="mdl-layout-spacer"></div>
           <nav className="mdl-navigation">
             <a className="mdl-navigation__link"  style={{fontSize: '20px'}}><i className="fa fa-send"></i></a>
-            <a className="mdl-navigation__link"  style={{fontSize: '20px'}}><i className="fa fa-medium"></i></a>
           </nav>
         </div>
       </header>
