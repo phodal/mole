@@ -18,12 +18,13 @@
 }
 
 .DraftEditor-root {
-  position: relative
+  position: relative;
+  margin-bottom: 30px;
 }
 
 .DraftEditor-editorContainer {
   background-color: rgba(255, 255, 255, 0);
-  border-left: .1px solid transparent;
+  border-left: 1px solid transparent;
   position: relative;
   z-index: 1
 }

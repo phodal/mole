@@ -26,6 +26,7 @@ function getBlockStyle(block) {
 const BLOCK_TYPES = [
   {label: 'H1', style: 'header-one'},
   {label: 'H2', style: 'header-two'},
+  {label: 'H3', style: 'header-three'},
   {label: 'Blockquote', style: 'blockquote'},
   {label: 'UL', style: 'unordered-list-item'},
   {label: 'OL', style: 'ordered-list-item'},
@@ -58,8 +59,7 @@ const BlockStyleControls = (props) => {
 var INLINE_STYLES = [
   {label: 'Bold', style: 'BOLD'},
   {label: 'Italic', style: 'ITALIC'},
-  {label: 'Underline', style: 'UNDERLINE'},
-  {label: 'Monospace', style: 'CODE'},
+  {label: 'Underline', style: 'UNDERLINE'}
 ];
 
 const InlineStyleControls = (props) => {

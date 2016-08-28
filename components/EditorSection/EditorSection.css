@@ -1,8 +1,9 @@
 .controlBar {
   position: fixed;
-  bottom: 10px;
+  bottom: 2px;
+  left: 0;
   background-color: #fff;
-  border: 2px solid #eee;
+  border: 1px solid #eee;
   border-radius: 3px;
   width: 100%;
   z-index: 999;

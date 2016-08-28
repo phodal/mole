@@ -1,7 +1,6 @@
-import React from 'react';
-import {Link} from 'react-router'
-import s from './Header.css';
-import Button from 'react-mdl/lib/Button';
+import React from "react";
+import {Link} from "react-router";
+import s from "./Header.css";
 
 class Header extends React.Component {
 
