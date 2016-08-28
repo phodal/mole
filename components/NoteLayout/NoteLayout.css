@@ -1,3 +1,28 @@
 .content {
   margin: 0 auto;
 }
+
+.row {
+  padding: 40px;
+}
+
+.title {
+  color: #fff;
+  text-decoration: none;
+}
+
+.fa {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+
+  .header {
+    display: flex;
+  }
+
+  .row {
+    padding: 0 16px;
+  }
+
+}
