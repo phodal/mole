@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router'
 import s from './Header.css';
+import Button from 'react-mdl/lib/Button';
 
 class Header extends React.Component {
 
@@ -20,6 +21,9 @@ class Header extends React.Component {
             <span><i className="fa fa-chevron-left"></i> 返回</span>
           </Link>
           <div className="mdl-layout-spacer"></div>
+          <nav className="mdl-navigation">
+            <a className="mdl-navigation__link"  style={{fontSize: '20px'}}><i className="fa fa-send"></i></a>
+          </nav>
         </div>
       </header>
     );
