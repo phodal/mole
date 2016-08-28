@@ -29,6 +29,14 @@ class IdeasPage extends React.Component {
       })
   }
 
+  getSubBody(str) {
+    if(str.length <= 100) {
+      return "暂无详细内容";
+    } else {
+      return str.substring(0, 100);
+    }
+  }
+
   render() {
     if (this.state.ideas) {
       return (
@@ -37,7 +45,7 @@ class IdeasPage extends React.Component {
             {this.state.ideas.map((idea, i) =>
               <Card shadow={0} key={i} className={s.card}>
                 <CardTitle>{idea.title}</CardTitle>
-                <CardText>{idea.body}</CardText>
+                <CardText>{this.getSubBody(idea.body)}</CardText>
                 <CardActions border>
                   <Button colored>Edit</Button>
                   <Button colored>View</Button>
