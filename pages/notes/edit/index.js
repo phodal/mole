@@ -48,7 +48,7 @@ class NoteEditPage extends React.Component {
     }
     //
     // var github = new GitHubApi({
-    //   token: "f24fafb9a2499ecdd061e98ee9bf1655be13abe1",
+    //   token: "",
     //   auth: "oauth"
     // });
     // var repo = github.getRepo('phodal', 'mole-test');
