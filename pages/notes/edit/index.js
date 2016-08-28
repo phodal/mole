@@ -5,6 +5,7 @@ import {filter} from 'lodash';
 import 'whatwg-fetch';
 import Spinner from 'react-mdl/lib/Spinner';
 import EditorSection from "../../../components/EditorSection";
+const GitHubApi = require("github-api");
 
 const MarkdownIt = require('markdown-it');
 
@@ -45,6 +46,18 @@ class NoteEditPage extends React.Component {
       console.log("-----------------------");
       console.log("Back to Home and Refresh");
     }
+    //
+    // var github = new GitHubApi({
+    //   token: "f24fafb9a2499ecdd061e98ee9bf1655be13abe1",
+    //   auth: "oauth"
+    // });
+    // var repo = github.getRepo('phodal', 'mole-test');
+    //
+    // repo.writeFile('gh-pages', 'content/test.json', "test", 'Robot: add article', function (err, data) {
+    //   if(data.commit){
+    //     console.log("--------------")
+    //   }
+    // });
   }
 
   render() {
