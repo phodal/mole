@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../../components/Layout';
+import NoteLayout from '../../../components/NoteLayout';
 import s from './styles.css';
 import {filter} from 'lodash';
 import 'whatwg-fetch';
@@ -50,17 +50,17 @@ class NoteEditPage extends React.Component {
   render() {
     if (this.state.article) {
       return (
-        <Layout className={s.content}>
+        <NoteLayout className={s.content}>
           <div className="markdown">
             <EditorSection content={this.state.article} />
           </div>
-        </Layout>
+        </NoteLayout>
       );
     } else {
       return (
-        <Layout className={s.content}>
+        <NoteLayout className={s.content}>
           <Spinner />
-        </Layout>
+        </NoteLayout>
       )
     }
   }
