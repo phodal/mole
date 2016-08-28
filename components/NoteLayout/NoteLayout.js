@@ -27,9 +27,6 @@ class NoteLayout extends React.Component {
                 <span><i className="fa fa-chevron-left"></i>返回</span>
               </Link>
               <div className="mdl-layout-spacer"></div>
-              <nav className="mdl-navigation">
-                <a className="mdl-navigation__link" style={{fontSize: '20px'}}><i className="fa fa-send"></i></a>
-              </nav>
             </div>
           </header>
           <main className="mdl-layout__content">
