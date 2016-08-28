@@ -35,7 +35,7 @@ class IdeasPage extends React.Component {
         <Layout className={s.content}>
           <div className="note-list">
             {this.state.ideas.map((idea, i) =>
-              <Card shadow={0} key={i} style={{width: '100%', margin: '0 auto 16px', minHeight: 'auto'}}>
+              <Card shadow={0} key={i} className={s.card}>
                 <CardTitle>{idea.title}</CardTitle>
                 <CardText>{idea.body}</CardText>
                 <CardActions border>

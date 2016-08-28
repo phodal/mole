@@ -2,3 +2,8 @@
   padding: 16px 16px;
 }
 
+.card {
+  width: 100%;
+  margin: 0 auto 16px;
+  min-height: inherit;
+}
