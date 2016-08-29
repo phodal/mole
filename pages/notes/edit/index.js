@@ -76,19 +76,20 @@ class NoteEditPage extends React.Component {
       return;
     }
 
-    var path = this.basicArticleInfo.path;
     const token = localStorage.getItem('settings.token');
+    var path = this.basicArticleInfo.path;
     var github = new GitHubApi({
       token: token,
       auth: "oauth"
     });
     var repo = github.getRepo('phodal', 'mole-test');
 
-    console.log(content);
-
     repo.writeFile('gh-pages', path, content, 'Robot: test for add article', function(err, data) {
       if (data.commit) {
         console.log("commit successful");
+      }
+      if(err) {
+        console.log(err);
       }
     });
   }
