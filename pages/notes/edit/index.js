@@ -7,6 +7,7 @@ import Spinner from 'react-mdl/lib/Spinner';
 import EditorSection from "../../../components/EditorSection";
 const GitHubApi = require("github-api");
 import {Link} from "react-router";
+const toMarkdown = require('to-markdown');
 
 const MarkdownIt = require('markdown-it');
 
@@ -53,7 +54,7 @@ class NoteEditPage extends React.Component {
   }
 
 
-  _onChange(state){
+  _onChange(state) {
     this._editor = state;
   }
 
@@ -65,9 +66,10 @@ class NoteEditPage extends React.Component {
       auth: "oauth"
     });
     var repo = github.getRepo('phodal', 'mole-test');
+    var content = toMarkdown(this._editor).toString();
 
-    repo.writeFile('gh-pages', path, this._editor, 'Robot: test for add article', function (err, data) {
-      if(data.commit){
+    repo.writeFile('gh-pages', path, content, 'Robot: test for add article', function (err, data) {
+      if (data.commit) {
         console.log("--------------")
       }
     });
@@ -76,27 +78,27 @@ class NoteEditPage extends React.Component {
   render() {
     if (this.state.article) {
       return (
-      <div className="mdl-layout mdl-js-layout content">
-        <div className="mdl-layout__inner-container">
-          <header className={`mdl-layout__header ${s.header}`}>
-            <div className={`mdl-layout__header-row ${s.row}`}>
-              <Link className={`mdl-layout-title ${s.title}`} to="/" onClick={this.contentSubmit}>
-                <span><i className="fa fa-chevron-left"></i>返回</span>
-              </Link>
-              <div className="mdl-layout-spacer"></div>
-            </div>
-          </header>
-          <main className="mdl-layout__content">
-            <div className="markdown">
-              <EditorSection
-                onChange={this._onChange}
-                content={this.state.article}
-                ref={(c) => this._editor = c}
-              />
-            </div>
-          </main>
+        <div className="mdl-layout mdl-js-layout content">
+          <div className="mdl-layout__inner-container">
+            <header className={`mdl-layout__header ${s.header}`}>
+              <div className={`mdl-layout__header-row ${s.row}`}>
+                <Link className={`mdl-layout-title ${s.title}`} to="/" onClick={this.contentSubmit}>
+                  <span><i className="fa fa-chevron-left"></i>返回</span>
+                </Link>
+                <div className="mdl-layout-spacer"></div>
+              </div>
+            </header>
+            <main className="mdl-layout__content">
+              <div className="markdown">
+                <EditorSection
+                  onChange={this._onChange}
+                  content={this.state.article}
+                  ref={(c) => this._editor = c}
+                />
+              </div>
+            </main>
+          </div>
         </div>
-      </div>
       );
     } else {
       return (
