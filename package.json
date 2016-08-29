@@ -9,6 +9,7 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "classnames": "^2.2.5",
+    "codemirror": "^5.18.2",
     "diff": "^3.0.0",
     "draft-js": "^0.8.1",
     "draft-js-export-html": "^0.4.0",
@@ -20,6 +21,7 @@
     "react": "15.3.0",
     "react-addons-css-transition-group": "15.3.0",
     "react-dom": "15.3.0",
+    "react-md-editor": "^0.2.1",
     "react-mdl": "^1.6.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.7.0",

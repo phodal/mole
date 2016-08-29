@@ -12,6 +12,7 @@ var GitHubApi = require("github-api");
 var toMarkdown = require('to-markdown');
 var MarkdownIt = require('markdown-it');
 var jsdiff = require('diff');
+var MarkdownEditor = require('react-md-editor');
 
 class NoteEditPage extends React.Component {
 
@@ -24,6 +25,8 @@ class NoteEditPage extends React.Component {
     this.originContent = "";
     this.contentSubmit = this.contentSubmit.bind(this);
     this._onChange = this._onChange.bind(this);
+    this.updateArticle = this.updateArticle.bind(this);
+    this.editorType = localStorage.getItem('settings.editor');
   }
 
   componentDidMount() {
@@ -48,6 +51,7 @@ class NoteEditPage extends React.Component {
           var renderedHTML = md.render(data);
           self.setState({
             article: renderedHTML,
+            markdown: data,
             isDataReady: true
           });
         })
@@ -57,9 +61,14 @@ class NoteEditPage extends React.Component {
     }
   }
 
-
   _onChange(state) {
     this._editor = state;
+  }
+
+  updateArticle(state) {
+    this.setState({
+      markdown: state
+    })
   }
 
   contentSubmit() {
@@ -95,6 +104,20 @@ class NoteEditPage extends React.Component {
   }
 
   render() {
+    var editor;
+    if (this.editorType === 'rich') {
+      editor =
+        <div className="markdown">
+          <EditorSection
+            onChange={this._onChange}
+            content={this.state.article}
+            ref={(c) => this._editor = c}
+          />
+        </div>;
+    } else {
+      editor = <MarkdownEditor value={this.state.markdown} onChange={this.updateArticle}/>;
+    }
+
     if (this.state.article) {
       return (
         <div className="mdl-layout mdl-js-layout content">
@@ -108,13 +131,7 @@ class NoteEditPage extends React.Component {
               </div>
             </header>
             <main className="mdl-layout__content">
-              <div className="markdown">
-                <EditorSection
-                  onChange={this._onChange}
-                  content={this.state.article}
-                  ref={(c) => this._editor = c}
-                />
-              </div>
+              {editor}
             </main>
           </div>
         </div>
