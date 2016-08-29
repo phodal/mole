@@ -34,7 +34,7 @@ class SettingsPage extends React.Component {
       EDITOR: editor,
     };
 
-    this.handleRepoChange = this.handleRepoChange.bind(this);
+    this.handleIdeaRepoChange = this.handleIdeaRepoChange.bind(this);
     this.handleTokenChange = this.handleTokenChange.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -44,12 +44,12 @@ class SettingsPage extends React.Component {
     document.title = 'Settings';
   }
 
-  handleRepoChange(event) {
-    var githubrepo = event.target.value;
+  handleIdeaRepoChange(event) {
+    var repo = event.target.value;
     this.setState({
-      GITHUB_REPO: githubrepo
+      GITHUB_REPO: repo
     });
-    localStorage.setItem('settings.repo', githubrepo);
+    localStorage.setItem('settings.repo', repo);
   }
 
   handleTokenChange(event) {
@@ -85,7 +85,7 @@ class SettingsPage extends React.Component {
     return (
       <Layout className={s.content}>
         <Textfield
-          onChange={this.handleRepoChange}
+          onChange={this.handleIdeaRepoChange}
           pattern="((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)?"
           error="Input is not a valid GitHub url!"
           label="GitHub Repo"
