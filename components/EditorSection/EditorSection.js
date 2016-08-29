@@ -1,7 +1,9 @@
 import * as React from "react";
-import {Editor, EditorState, ContentState, convertFromHTML, RichUtils} from 'draft-js';
+import {Editor, EditorState, ContentState, convertToRaw, convertFromHTML, RichUtils} from 'draft-js';
 import StyleButton from '../StyleButton';
 import s from './EditorSection.css';
+
+import {stateToHTML} from 'draft-js-export-html';
 
 // Custom overrides for "code" style.
 const styleMap = {
@@ -90,11 +92,19 @@ class EditorSection extends React.Component {
     };
 
     this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({editorState});
+    this.onChange = (editorState) => this._onChange(editorState);
 
     this.handleKeyCommand = (command) => this._handleKeyCommand(command);
     this.toggleBlockType = (type) => this._toggleBlockType(type);
     this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
+  }
+
+  _onChange(editorState) {
+    this.setState({
+      editorState: editorState
+    });
+    let html = stateToHTML(editorState.getCurrentContent());
+    this.props.onChange(html);
   }
 
   _handleKeyCommand(command) {
