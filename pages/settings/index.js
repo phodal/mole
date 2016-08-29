@@ -36,6 +36,8 @@ class SettingsPage extends React.Component {
 
     this.handleRepoChange = this.handleRepoChange.bind(this);
     this.handleTokenChange = this.handleTokenChange.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
   }
 
   componentDidMount() {
@@ -58,6 +60,21 @@ class SettingsPage extends React.Component {
     localStorage.setItem('settings.token', githubtoken);
   }
 
+  handleUsernameChange(event) {
+    var username = event.target.value;
+    this.setState({
+      GITHUB_TOKEN: username
+    });
+    localStorage.setItem('settings.username', username);
+  }
+
+  handleEmailChange(event) {
+    var email = event.target.value;
+    this.setState({
+      GITHUB_TOKEN: email
+    });
+    localStorage.setItem('settings.email', email);
+  }
 
   changeDefaultEditor(event) {
     console.log(event.target.value);
@@ -86,12 +103,14 @@ class SettingsPage extends React.Component {
         <Textfield
           label="Commit Username"
           floatingLabel
+          onChange={this.handleUsernameChange}
           value={this.state.COMMIT_USERNAME}
           style={{width: '100%'}}
         />
         <Textfield
           label="Commit Email"
           floatingLabel
+          onChange={this.handleEmailChange}
           value={this.state.COMMIT_EMAIL}
           style={{width: '100%'}}
         />
