@@ -5,11 +5,13 @@ import {filter} from 'lodash';
 import 'whatwg-fetch';
 import Spinner from 'react-mdl/lib/Spinner';
 import EditorSection from "../../../components/EditorSection";
-const GitHubApi = require("github-api");
 import {Link} from "react-router";
-const toMarkdown = require('to-markdown');
+import {isObject} from 'lodash';
 
-const MarkdownIt = require('markdown-it');
+var GitHubApi = require("github-api");
+var toMarkdown = require('to-markdown');
+var MarkdownIt = require('markdown-it');
+var jsdiff = require('diff');
 
 class NoteEditPage extends React.Component {
 
@@ -19,6 +21,7 @@ class NoteEditPage extends React.Component {
       isDataReady: false,
     };
     this._editor = "";
+    this.originContent = "";
     this.contentSubmit = this.contentSubmit.bind(this);
     this._onChange = this._onChange.bind(this);
   }
@@ -36,10 +39,11 @@ class NoteEditPage extends React.Component {
       self.basicArticleInfo = filter(articles, {id: id})[0];
       var articleUrl = baseUrl + self.basicArticleInfo.path;
       fetch(articleUrl)
-        .then(function (response) {
+        .then(function(response) {
           return response.text();
         })
-        .then(function (data) {
+        .then(function(data) {
+          self.originContent = data;
           var md = new MarkdownIt({html: true, linkify: true});
           var renderedHTML = md.render(data);
           self.setState({
@@ -59,6 +63,19 @@ class NoteEditPage extends React.Component {
   }
 
   contentSubmit() {
+    var hasEnterContent = isObject(this._editor);
+    if (hasEnterContent) {
+      return;
+    }
+
+    var content = toMarkdown(this._editor).toString();
+    var diff = jsdiff.diffSentences(this.originContent, content);
+
+    var hasDiff = diff && diff.length > 0 && !(diff[0].count >= 1);
+    if (hasDiff) {
+      return;
+    }
+
     var path = this.basicArticleInfo.path;
     const token = localStorage.getItem('settings.token');
     var github = new GitHubApi({
@@ -66,11 +83,12 @@ class NoteEditPage extends React.Component {
       auth: "oauth"
     });
     var repo = github.getRepo('phodal', 'mole-test');
-    var content = toMarkdown(this._editor).toString();
 
-    repo.writeFile('gh-pages', path, content, 'Robot: test for add article', function (err, data) {
+    console.log(content);
+
+    repo.writeFile('gh-pages', path, content, 'Robot: test for add article', function(err, data) {
       if (data.commit) {
-        console.log("--------------")
+        console.log("commit successful");
       }
     });
   }

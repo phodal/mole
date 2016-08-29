@@ -9,6 +9,7 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "classnames": "^2.2.5",
+    "diff": "^3.0.0",
     "draft-js": "^0.8.1",
     "draft-js-export-html": "^0.4.0",
     "fastclick": "^1.0.6",
