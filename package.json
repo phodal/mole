@@ -24,6 +24,7 @@
     "react-router": "^2.7.0",
     "react-toolbox": "^1.1.2",
     "redux": "^3.5.2",
+    "to-markdown": "^3.0.1",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
