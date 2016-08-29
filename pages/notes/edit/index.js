@@ -93,7 +93,14 @@ class NoteEditPage extends React.Component {
     });
     var repo = github.getRepo('phodal', 'mole-test');
 
-    repo.writeFile('gh-pages', path, content, 'Robot: test for add article', function(err, data) {
+    var options = {
+      committer: {
+        name: "Phodal",
+        email: "h@phodal.com.com"
+      },
+    };
+
+    repo.writeFile('gh-pages', path, content, 'Robot: test for add article', options, function(err, data) {
       if (data.commit) {
         console.log("commit successful");
       }
