@@ -2,22 +2,30 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import s from './styles.css';
 import {Textfield} from 'react-mdl/lib';
+import {RadioGroup, Radio} from 'react-mdl/lib';
 
 class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
     var repo = localStorage.getItem('settings.repo');
     var token = localStorage.getItem('settings.token');
+    var editor = localStorage.getItem('settings.editor');
 
-    if(repo && token) {
+    if (!editor) {
+      editor = 'markdown'
+    }
+
+    if (repo && token) {
       this.state = {
         GITHUB_REPO: repo,
-        GITHUB_TOKEN: token
+        GITHUB_TOKEN: token,
+        EDITOR: editor,
       };
     } else {
       this.state = {
         GITHUB_REPO: '',
-        GITHUB_TOKEN: ''
+        GITHUB_TOKEN: '',
+        EDITOR: editor,
       };
     }
 
@@ -46,6 +54,12 @@ class SettingsPage extends React.Component {
     localStorage.setItem('settings.token', githubtoken);
   }
 
+
+  changeDefaultEditor(event) {
+    console.log(event.target.value);
+    localStorage.setItem('settings.editor', event.target.value);
+  }
+
   render() {
     return (
       <Layout className={s.content}>
@@ -65,10 +79,16 @@ class SettingsPage extends React.Component {
           value={this.state.GITHUB_TOKEN}
           style={{width: '100%'}}
         />
+        <div>
+          <label>编辑器类型</label>
+          <RadioGroup childContainer="li" name="demo2" value={this.state.EDITOR} onChange={this.changeDefaultEditor}>
+            <Radio value="markdown" ripple>Markdown</Radio>
+            <Radio value="rich">富文本(Beta)</Radio>
+          </RadioGroup>
+        </div>
       </Layout>
     );
   }
-
 }
 
 export default SettingsPage;
