@@ -7,28 +7,32 @@ import {RadioGroup, Radio} from 'react-mdl/lib';
 class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
-    var repo = localStorage.getItem('settings.repo');
-    var token = localStorage.getItem('settings.token');
-    var editor = localStorage.getItem('settings.editor');
+
+    var getLSItem = function (key) {
+      var result = localStorage.getItem(key);
+      if (result === null) {
+        return ''
+      }
+      return result;
+    };
+
+    var repo = getLSItem('settings.repo');
+    var token = getLSItem('settings.token');
+    var editor = getLSItem('settings.editor');
+    var username = getLSItem('settings.username');
+    var email = getLSItem('settings.email');
 
     if (!editor) {
       editor = 'markdown'
     }
 
-    if (repo && token) {
-      this.state = {
-        GITHUB_REPO: repo,
-        GITHUB_TOKEN: token,
-        EDITOR: editor,
-      };
-    } else {
-      this.state = {
-        GITHUB_REPO: '',
-        GITHUB_TOKEN: '',
-        EDITOR: editor,
-      };
-    }
-
+    this.state = {
+      GITHUB_REPO: repo,
+      GITHUB_TOKEN: token,
+      COMMIT_USERNAME: username,
+      COMMIT_EMAIL: email,
+      EDITOR: editor,
+    };
 
     this.handleRepoChange = this.handleRepoChange.bind(this);
     this.handleTokenChange = this.handleTokenChange.bind(this);
@@ -77,6 +81,18 @@ class SettingsPage extends React.Component {
           label="GitHub Token"
           floatingLabel
           value={this.state.GITHUB_TOKEN}
+          style={{width: '100%'}}
+        />
+        <Textfield
+          label="Commit Username"
+          floatingLabel
+          value={this.state.COMMIT_USERNAME}
+          style={{width: '100%'}}
+        />
+        <Textfield
+          label="Commit Email"
+          floatingLabel
+          value={this.state.COMMIT_EMAIL}
           style={{width: '100%'}}
         />
         <div>
