@@ -81,8 +81,8 @@ class NoteEditPage extends React.Component {
 
       content = toMarkdown(this._editor).toString();
       diff = jsdiff.diffSentences(this.originContent, content);
-      hasDiff = diff && diff.length > 1 && !(diff[0].count >= 1);
-      if (hasDiff) {
+      hasDiff = diff && diff.length > 1;
+      if (!hasDiff) {
         return;
       }
 
@@ -90,9 +90,9 @@ class NoteEditPage extends React.Component {
     } else {
       content = this.state.markdown;
       diff = jsdiff.diffSentences(this.originContent, content);
-      hasDiff = diff && diff.length > 1 && !(diff[0].count >= 1);
+      hasDiff = diff && diff.length > 1;
 
-      if (hasDiff) {
+      if (!hasDiff) {
         return;
       }
       this.doCommit(content);
