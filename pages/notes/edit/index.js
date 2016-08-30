@@ -82,21 +82,18 @@ class NoteEditPage extends React.Component {
       content = toMarkdown(this._editor).toString();
       diff = jsdiff.diffSentences(this.originContent, content);
       hasDiff = diff && diff.length > 1;
-      if (!hasDiff) {
-        return;
-      }
-
-      this.doCommit(content);
     } else {
       content = this.state.markdown;
       diff = jsdiff.diffSentences(this.originContent, content);
       hasDiff = diff && diff.length > 1;
-
-      if (!hasDiff) {
-        return;
-      }
-      this.doCommit(content);
     }
+
+    if (!hasDiff) {
+      return;
+    }
+
+    this.doCommit(content);
+
   }
 
   doCommit(content) {
