@@ -57,7 +57,7 @@ class SettingsPage extends React.Component {
   handleIdeasRepoChange(event) {
     var repo = event.target.value;
     this.setState({
-      NOTES_REPO: repo
+      IDEAS_REPO: repo
     });
     localStorage.setItem('settings.ideas', repo);
   }
