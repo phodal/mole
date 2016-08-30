@@ -17,12 +17,17 @@ class IdeasPage extends React.Component {
     document.title = 'Ideas';
 
     var self = this;
-    var api = "https://api.github.com/repos/phodal/ideas/issues";
-    fetch(api)
-      .then(function(response) {
+    var ideasRepo = localStorage.getItem('settings.ideas');
+    if (!ideasRepo) {
+      ideasRepo = "https://api.github.com/repos/phodal/mole/issues";
+    } else {
+      ideasRepo = "https://api.github.com/repos/" + ideasRepo + "/issues";
+    }
+    fetch(ideasRepo)
+      .then(function (response) {
         return response.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         self.setState({
           ideas: data
         });
@@ -30,7 +35,7 @@ class IdeasPage extends React.Component {
   }
 
   getSubBody(str) {
-    if(str.length <= 100) {
+    if (str.length <= 100) {
       return "暂无详细内容";
     } else {
       return str.substring(0, 100);
@@ -68,3 +73,4 @@ class IdeasPage extends React.Component {
 }
 
 export default IdeasPage;
+

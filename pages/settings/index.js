@@ -95,7 +95,7 @@ class SettingsPage extends React.Component {
       <Layout className={s.content}>
         <Textfield
           onChange={this.handleNotesRepoChange}
-          pattern="((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)?"
+          pattern="([\w\.@\:/\-~]+)?"
           error="Input is not a valid GitHub url!"
           label="云笔记 Repo"
           floatingLabel
@@ -104,7 +104,7 @@ class SettingsPage extends React.Component {
         />
         <Textfield
           onChange={this.handleIdeasRepoChange}
-          pattern="((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)?"
+          pattern="([\w\.@\:/\-~]+)?"
           error="Input is not a valid GitHub url!"
           label="Ideas Repo"
           floatingLabel
