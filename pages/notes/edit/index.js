@@ -72,7 +72,7 @@ class NoteEditPage extends React.Component {
   }
 
   contentSubmit() {
-    var content;
+    var content, diff, hasDiff;
     if (this.editorType === 'rich') {
       var hasEnterContent = isObject(this._editor);
       if (hasEnterContent) {
@@ -80,15 +80,21 @@ class NoteEditPage extends React.Component {
       }
 
       content = toMarkdown(this._editor).toString();
-      var diff = jsdiff.diffSentences(this.originContent, content);
-
-      var hasDiff = diff && diff.length > 0 && !(diff[0].count >= 1);
+      diff = jsdiff.diffSentences(this.originContent, content);
+      hasDiff = diff && diff.length > 1 && !(diff[0].count >= 1);
       if (hasDiff) {
         return;
       }
+
       this.doCommit(content);
     } else {
       content = this.state.markdown;
+      diff = jsdiff.diffSentences(this.originContent, content);
+      hasDiff = diff && diff.length > 1 && !(diff[0].count >= 1);
+
+      if (hasDiff) {
+        return;
+      }
       this.doCommit(content);
     }
   }
@@ -144,7 +150,7 @@ class NoteEditPage extends React.Component {
             <header className={`mdl-layout__header ${s.header}`}>
               <div className={`mdl-layout__header-row ${s.row}`}>
                 <Link className={`mdl-layout-title ${s.title}`} to="/" onClick={this.contentSubmit}>
-                  <span><i className="fa fa-chevron-left" />返回</span>
+                  <span><i className="fa fa-chevron-left"/>返回</span>
                 </Link>
                 <div className="mdl-layout-spacer"></div>
               </div>
