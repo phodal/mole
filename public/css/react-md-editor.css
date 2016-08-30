@@ -18,6 +18,11 @@
   height: 100%;
 }
 
+.MDEditor_editor .CodeMirror  pre {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
 .MDEditor_toolbar {
   width: 360px;
   margin: 4px auto;
