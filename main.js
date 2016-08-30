@@ -3,9 +3,9 @@ import "whatwg-fetch";
 import React from "react";
 import {render} from "react-dom";
 import FastClick from "fastclick";
-import {Provider} from 'react-redux';
+import {Provider} from "react-redux";
 import {Router, Route, hashHistory, IndexRoute} from "react-router";
-import HomePage from "./pages/home";
+import NoteListPage from "./pages/notes";
 import ErrorPage from "./pages/error";
 import IdeasPage from "./pages/ideas";
 import NoteEditPage from "./pages/notes/edit";
@@ -18,7 +18,7 @@ function startApp() {
     <Provider store={store}>
       <Router history={hashHistory}>
         <Route path="/">
-          <IndexRoute name="notes" component={HomePage}/>
+          <IndexRoute name="notes" component={NoteListPage}/>
           <Route name="notes.edit" path="/notes/edit/:id" component={NoteEditPage}/>
           <Route name="notes.view" path="/notes/view/:id" component={NoteViewPage}/>
           <Route name="ideas" path="/ideas" component={IdeasPage}/>

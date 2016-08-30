@@ -1,18 +1,18 @@
-import React, {PropTypes} from 'react';
-import Button from 'react-mdl/lib/Button';
-import FABButton from 'react-mdl/lib/FABButton';
-import Spinner from 'react-mdl/lib/Spinner';
-import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
-import {Dialog, DialogTitle, DialogContent, DialogActions} from 'react-mdl/lib/Dialog';
-import {Link} from 'react-router'
-import Layout from '../../components/Layout';
-import ChangeHistory from '../../components/ChangeHistory';
-import s from './styles.css';
+import React, {PropTypes} from "react";
+import Button from "react-mdl/lib/Button";
+import FABButton from "react-mdl/lib/FABButton";
+import Spinner from "react-mdl/lib/Spinner";
+import {Card, CardTitle, CardText, CardActions} from "react-mdl/lib/Card";
+import {Dialog, DialogContent, DialogActions} from "react-mdl/lib/Dialog";
+import {Link} from "react-router";
+import Layout from "../../components/Layout";
+import ChangeHistory from "../../components/ChangeHistory";
+import s from "./styles.css";
 var moment = require('moment');
 
 moment.locale('zh-CN');
 
-class HomePage extends React.Component {
+class NoteListPage extends React.Component {
   constructor(props) {
     super(props);
     var content = localStorage.getItem("content");
@@ -129,4 +129,4 @@ class HomePage extends React.Component {
 
 }
 
-export default HomePage;
+export default NoteListPage;
