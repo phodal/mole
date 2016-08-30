@@ -8,7 +8,7 @@ class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
 
-    var getLSItem = function (key) {
+    var getLSItem = function(key) {
       var result = localStorage.getItem(key);
       if (result === null) {
         return ''
