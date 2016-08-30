@@ -74,7 +74,7 @@ class SettingsPage extends React.Component {
   handleUsernameChange(event) {
     var username = event.target.value;
     this.setState({
-      GITHUB_TOKEN: username
+      COMMIT_USERNAME: username
     });
     localStorage.setItem('settings.username', username);
   }
@@ -82,7 +82,7 @@ class SettingsPage extends React.Component {
   handleEmailChange(event) {
     var email = event.target.value;
     this.setState({
-      GITHUB_TOKEN: email
+      COMMIT_EMAIL: email
     });
     localStorage.setItem('settings.email', email);
   }
