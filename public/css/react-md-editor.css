@@ -19,8 +19,8 @@
 }
 
 .MDEditor_toolbar {
-  margin-bottom: 4px;
-  margin-top: 4px;
+  width: 360px;
+  margin: 4px auto;
 }
 
 .MDEditor_toolbarButton {
