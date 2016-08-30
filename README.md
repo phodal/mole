@@ -7,7 +7,6 @@ Feature in Design:
  - GitHub as Database
  - GitHub Page as Blog / Note for Display
  - Markdown Support
- - Issues as Todo List
  - Issues as Idea List
  
 Platform in Plan: 
