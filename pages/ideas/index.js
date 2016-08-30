@@ -4,6 +4,7 @@ import s from './styles.css';
 import Button from 'react-mdl/lib/Button';
 import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
 import Spinner from 'react-mdl/lib/Spinner';
+import FABButton from 'react-mdl/lib/FABButton';
 
 class IdeasPage extends React.Component {
   constructor(props) {
@@ -53,6 +54,11 @@ class IdeasPage extends React.Component {
               </Card>
             )}
           </div>
+
+          <FABButton colored
+                     style={{float: "right", position: "fixed", right: "20px", bottom: "20px", zIndex: "100"}}>
+            <i className="fa fa-plus"/>
+          </FABButton>
         </Layout>
       );
     } else {
