@@ -72,19 +72,28 @@ class NoteEditPage extends React.Component {
   }
 
   contentSubmit() {
-    var hasEnterContent = isObject(this._editor);
-    if (hasEnterContent) {
-      return;
+    var content;
+    if (this.editorType === 'rich') {
+      var hasEnterContent = isObject(this._editor);
+      if (hasEnterContent) {
+        return;
+      }
+
+      content = toMarkdown(this._editor).toString();
+      var diff = jsdiff.diffSentences(this.originContent, content);
+
+      var hasDiff = diff && diff.length > 0 && !(diff[0].count >= 1);
+      if (hasDiff) {
+        return;
+      }
+      this.doCommit(content);
+    } else {
+      content = this.state.markdown;
+      this.doCommit(content);
     }
+  }
 
-    var content = toMarkdown(this._editor).toString();
-    var diff = jsdiff.diffSentences(this.originContent, content);
-
-    var hasDiff = diff && diff.length > 0 && !(diff[0].count >= 1);
-    if (hasDiff) {
-      return;
-    }
-
+  doCommit(content) {
     const token = localStorage.getItem('settings.token');
     const username = localStorage.getItem('settings.username');
     const email = localStorage.getItem('settings.email');
@@ -107,7 +116,7 @@ class NoteEditPage extends React.Component {
       if (data.commit) {
         console.log("commit successful");
       }
-      if(err) {
+      if (err) {
         console.log(err);
       }
     });
