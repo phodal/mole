@@ -1,10 +1,10 @@
-import React from 'react';
-import Layout from '../../../components/Layout';
-import s from './styles.css';
-import {filter} from 'lodash';
-import 'whatwg-fetch';
+import React from "react";
+import NoteLayout from "../../../components/NoteLayout";
+import s from "./styles.css";
+import {filter} from "lodash";
+import "whatwg-fetch";
+import Spinner from "react-mdl/lib/Spinner";
 const MarkdownIt = require('markdown-it');
-import Spinner from 'react-mdl/lib/Spinner';
 
 class NoteViewPage extends React.Component {
 
@@ -14,7 +14,7 @@ class NoteViewPage extends React.Component {
       isDataReady: false
     };
     const note = localStorage.getItem("note." + this.props.routeParams.id);
-    if(note){
+    if (note) {
       this.state.article = note;
     }
   }
@@ -32,10 +32,10 @@ class NoteViewPage extends React.Component {
       var basicArticleInfo = filter(articles, {id: id})[0];
       var articleUrl = baseUrl + basicArticleInfo.path;
       fetch(articleUrl)
-        .then(function(response) {
+        .then(function (response) {
           return response.text();
         })
-        .then(function(data) {
+        .then(function (data) {
           localStorage.setItem("note." + id, data);
 
           self.setState({
@@ -59,15 +59,15 @@ class NoteViewPage extends React.Component {
   render() {
     if (this.state.article) {
       return (
-        <Layout className={s.content}>
+        <NoteLayout className={s.content}>
           <div className="markdown" dangerouslySetInnerHTML={this.renderMarkdown(this.state.article)}></div>
-        </Layout>
+        </NoteLayout>
       );
     } else {
       return (
-        <Layout className={s.content}>
+        <NoteLayout className={s.content}>
           <Spinner />
-        </Layout>
+        </NoteLayout>
       )
     }
   }

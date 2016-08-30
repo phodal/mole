@@ -24,7 +24,7 @@ class NoteLayout extends React.Component {
           <header className={`mdl-layout__header ${s.header}`}>
             <div className={`mdl-layout__header-row ${s.row}`}>
               <Link className={`mdl-layout-title ${s.title}`} to="/">
-                <span><i className="fa fa-chevron-left"></i>返回</span>
+                <span><i className="fa fa-chevron-left" /> 返回</span>
               </Link>
               <div className="mdl-layout-spacer"></div>
             </div>
