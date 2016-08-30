@@ -2,22 +2,21 @@
  
 > A GitHub-base Cloud Note, design for open & free GitHub User.
 
-Feature in Design: 
+Features: 
 
  - GitHub as Database
  - GitHub Page as Blog / Note for Display
  - Markdown Support
- - Issues as Idea List
+ - Issues as Idea List 
  
-Platform in Plan: 
+跨平台
 
-> Build with React
+ - Web——GitHub Page发布。react-static-boilerplate提供了一个脚本可以直接发布代码到GitHub Page。
+ - Mobile——支援Android和iOS等移动版本。由于使用的是React MDL作为UI框架，所以只需要写点简单的Cordova脚本就可以实现打包。
+ - Desktop——支援Electron桌面。同样的，使用个脚本来实现。
+ - Chrome插件(TBC)
+ - 微信集成(TBC)
 
- - Electron for Desktop (Mac OS, Windows, GNU/Linux)
- - Cordova for Mobile (Android, iOS, Windows Phone)
- - Web
- 
- 
 Setup
 ---
 
@@ -26,11 +25,29 @@ git clone git@github.com:phodal/mole.git
 npm install
 ```
 
-
-API
+Documents
 ---
 
-### Note API in Design
+### 技术栈
+
+ - React MDL
+ - Fetch 
+ - Webpack
+ - Redux
+ - Cordova
+ - Electron
+
+More
+
+ - moment，用于显示时间
+ - jsdiff，用于diff修改
+ - github-api，一个简单好用的GitHub API封装
+ - draft.js，用于未来提供富文本支持
+ - to-markdown和markdown-it，用于用富文本提供转换支持，似乎不是很完善
+
+### API
+
+Note API in Design
 
 Example: [https://github.com/phodal/mole-test/blob/gh-pages/api/all.json](https://github.com/phodal/mole-test/blob/gh-pages/api/all.json)
 
@@ -44,16 +61,13 @@ Example: [https://github.com/phodal/mole-test/blob/gh-pages/api/all.json](https:
 }
 ```
 
-### GitHub API
-
-Todo Example: [https://github.com/phodal/mole-test/issues/1](https://github.com/phodal/mole-test/issues/1)
+GitHub API
 
 Idea Example: [https://github.com/phodal/ideas/issues](https://github.com/phodal/ideas/issues)
 
 Commit History: [https://api.github.com/repos/phodal/mole-test/commits?path=notes/hello-world.md](https://api.github.com/repos/phodal/mole-test/commits?path=notes/hello-world.md)
 
-TODO
----
+### TODO
 
  - Localstorage 回收。 Localstorage 的存储大小为5M。
 
