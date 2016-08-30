@@ -47,10 +47,6 @@ class IdeasPage extends React.Component {
               <Card shadow={0} key={i} className={s.card}>
                 <CardTitle>{idea.title}</CardTitle>
                 <CardText>{this.getSubBody(idea.body)}</CardText>
-                <CardActions border>
-                  <Button colored>Edit</Button>
-                  <Button colored>Done</Button>
-                </CardActions>
               </Card>
             )}
           </div>
