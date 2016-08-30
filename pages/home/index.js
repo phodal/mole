@@ -106,7 +106,7 @@ class HomePage extends React.Component {
             <i className="fa fa-plus"/>
           </FABButton>
 
-          <Dialog open={this.state.openDialog}>
+          <Dialog open={this.state.openDialog} style={{maxHeight: '80%', overflow: 'scroll'}}>
             <DialogContent>
               <h4>{this.state.changeTitle}</h4>
               {this.state.changeHistory && this.state.changeHistory.map((changeHistory, i) =>

@@ -17,7 +17,6 @@ class ChangeHistory extends React.Component {
       <div>
         <div className={s.detail}>
           <p><span>{this.renderTime(history.commit.author.date)}</span>，<span>{history.commit.message}</span></p>
-          <Button raised ripple>详情</Button>
         </div>
       </div>
     );
