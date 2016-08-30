@@ -48,8 +48,7 @@ class IdeasPage extends React.Component {
                 <CardText>{this.getSubBody(idea.body)}</CardText>
                 <CardActions border>
                   <Button colored>Edit</Button>
-                  <Button colored>View</Button>
-                  <Button colored>Trash</Button>
+                  <Button colored>Done</Button>
                 </CardActions>
               </Card>
             )}
