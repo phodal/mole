@@ -4,6 +4,7 @@ import s from "./styles.css";
 import {Card, CardTitle, CardText} from "react-mdl/lib/Card";
 import Spinner from "react-mdl/lib/Spinner";
 import FABButton from "react-mdl/lib/FABButton";
+import {Link} from 'react-router'
 
 class IdeasPage extends React.Component {
   constructor(props) {
@@ -55,10 +56,18 @@ class IdeasPage extends React.Component {
             )}
           </div>
 
-          <FABButton colored ripple
-                     style={{float: "right", position: "fixed", right: "20px", bottom: "20px", zIndex: "100"}}>
-            <i className="fa fa-plus"/>
-          </FABButton>
+          <Link to='/ideas/create'>
+            <FABButton colored ripple
+                       style={{
+                         float: "right",
+                         position: "fixed",
+                         right: "20px",
+                         bottom: "20px",
+                         zIndex: "100"
+                       }}>
+              <i className="fa fa-plus"/>
+            </FABButton>
+          </Link>
         </Layout>
       );
     } else {
