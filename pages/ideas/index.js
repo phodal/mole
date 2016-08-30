@@ -51,7 +51,7 @@ class IdeasPage extends React.Component {
             )}
           </div>
 
-          <FABButton colored
+          <FABButton colored ripple
                      style={{float: "right", position: "fixed", right: "20px", bottom: "20px", zIndex: "100"}}>
             <i className="fa fa-plus"/>
           </FABButton>
