@@ -1,10 +1,9 @@
-import React from 'react';
-import Layout from '../../components/Layout';
-import s from './styles.css';
-import Button from 'react-mdl/lib/Button';
-import {Card, CardTitle, CardText, CardActions} from 'react-mdl/lib/Card';
-import Spinner from 'react-mdl/lib/Spinner';
-import FABButton from 'react-mdl/lib/FABButton';
+import React from "react";
+import Layout from "../../components/Layout";
+import s from "./styles.css";
+import {Card, CardTitle, CardText} from "react-mdl/lib/Card";
+import Spinner from "react-mdl/lib/Spinner";
+import FABButton from "react-mdl/lib/FABButton";
 
 class IdeasPage extends React.Component {
   constructor(props) {
