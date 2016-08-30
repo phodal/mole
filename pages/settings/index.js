@@ -1,14 +1,13 @@
-import React from 'react';
-import Layout from '../../components/Layout';
-import s from './styles.css';
-import {Textfield} from 'react-mdl/lib';
-import {RadioGroup, Radio} from 'react-mdl/lib';
+import React from "react";
+import Layout from "../../components/Layout";
+import s from "./styles.css";
+import {Textfield, List, RadioGroup, Radio} from "react-mdl/lib";
 
 class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
 
-    var getLSItem = function(key) {
+    var getLSItem = function (key) {
       var result = localStorage.getItem(key);
       if (result === null) {
         return ''
@@ -88,7 +87,6 @@ class SettingsPage extends React.Component {
   }
 
   changeDefaultEditor(event) {
-    console.log(event.target.value);
     localStorage.setItem('settings.editor', event.target.value);
   }
 
@@ -136,10 +134,12 @@ class SettingsPage extends React.Component {
         />
         <div>
           <label>编辑器类型</label>
-          <RadioGroup childContainer="li" name="demo2" value={this.state.EDITOR} onChange={this.changeDefaultEditor}>
-            <Radio value="markdown" ripple>Markdown</Radio>
-            <Radio value="rich">富文本(Beta)</Radio>
-          </RadioGroup>
+          <List>
+            <RadioGroup childContainer="li" name="demo2" value={this.state.EDITOR} onChange={this.changeDefaultEditor}>
+              <Radio value="markdown" ripple>Markdown</Radio>
+              <Radio value="rich">富文本(Beta)</Radio>
+            </RadioGroup>
+          </List>
         </div>
       </Layout>
     );
