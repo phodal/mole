@@ -10,7 +10,6 @@ import ErrorPage from "./pages/error";
 import IdeasPage from "./pages/ideas";
 import NoteEditPage from "./pages/notes/edit";
 import NoteViewPage from "./pages/notes/view";
-import TodoListPage from "./pages/todolist";
 import SettingsPage from "./pages/settings";
 import store from "./core/store";
 
@@ -23,7 +22,6 @@ function startApp() {
           <Route name="notes.edit" path="/notes/edit/:id" component={NoteEditPage}/>
           <Route name="notes.view" path="/notes/view/:id" component={NoteViewPage}/>
           <Route name="ideas" path="/ideas" component={IdeasPage}/>
-          <Route name="todolist" path="/todolist" component={TodoListPage}/>
           <Route name="settings" path="/settings" component={SettingsPage}/>
           <Route path="*" component={ErrorPage}/>
         </Route>
