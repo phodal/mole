@@ -21,7 +21,6 @@ class SettingsPage extends React.Component {
     var editor = getLSItem('settings.editor');
     var username = getLSItem('settings.username');
     var email = getLSItem('settings.email');
-    var todo_repo = getLSItem('settings.todo');
     var ideas_repo = getLSItem('settings.ideas');
 
     if (!editor) {
@@ -33,7 +32,6 @@ class SettingsPage extends React.Component {
       GITHUB_TOKEN: token,
       COMMIT_USERNAME: username,
       COMMIT_EMAIL: email,
-      TODO_REPO: todo_repo,
       IDEAS_REPO: ideas_repo,
       EDITOR: editor,
     };
@@ -42,7 +40,6 @@ class SettingsPage extends React.Component {
     this.handleTokenChange = this.handleTokenChange.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleTodoRepoChange = this.handleTodoRepoChange.bind(this);
     this.handleIdeasRepoChange = this.handleIdeasRepoChange.bind(this);
   }
 
@@ -56,14 +53,6 @@ class SettingsPage extends React.Component {
       NOTES_REPO: repo
     });
     localStorage.setItem('settings.repo', repo);
-  }
-
-  handleTodoRepoChange(event) {
-    var repo = event.target.value;
-    this.setState({
-      NOTES_REPO: repo
-    });
-    localStorage.setItem('settings.todo', repo);
   }
 
   handleIdeasRepoChange(event) {
@@ -116,19 +105,10 @@ class SettingsPage extends React.Component {
           style={{width: '100%'}}
         />
         <Textfield
-          onChange={this.handleTodoRepoChange}
-          pattern="((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)?"
-          error="Input is not a valid GitHub url!"
-          label="Ideas Repo"
-          floatingLabel
-          value={this.state.TODO_REPO}
-          style={{width: '100%'}}
-        />
-        <Textfield
           onChange={this.handleIdeasRepoChange}
           pattern="((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)?"
           error="Input is not a valid GitHub url!"
-          label="Todo Repo"
+          label="Ideas Repo"
           floatingLabel
           value={this.state.IDEAS_REPO}
           style={{width: '100%'}}
