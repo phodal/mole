@@ -86,6 +86,9 @@ class NoteEditPage extends React.Component {
     }
 
     const token = localStorage.getItem('settings.token');
+    const username = localStorage.getItem('settings.username');
+    const email = localStorage.getItem('settings.email');
+
     var path = this.basicArticleInfo.path;
     var github = new GitHubApi({
       token: token,
@@ -95,8 +98,8 @@ class NoteEditPage extends React.Component {
 
     var options = {
       committer: {
-        name: "Phodal",
-        email: "h@phodal.com.com"
+        name: username,
+        email: email
       },
     };
 
