@@ -34,10 +34,10 @@ class HomePage extends React.Component {
     var self = this;
     var url = 'https://api.github.com/repos/phodal/mole-test/commits?path=' + path;
     fetch(url)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         self.setState({
           openDialog: true,
           changeTitle: title,
@@ -58,10 +58,10 @@ class HomePage extends React.Component {
 
     var api = "https://phodal.github.io/mole-test/api/all.json";
     fetch(api)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         localStorage.setItem("base_url", data.source);
         localStorage.setItem("content", JSON.stringify(data.content));
 
@@ -84,16 +84,16 @@ class HomePage extends React.Component {
               <Card shadow={0} key={i} style={{width: '100%', margin: '0 auto 16px'}}>
                 <CardTitle>{article.title}</CardTitle>
                 <CardText>{article.description}</CardText>
-                <CardActions border>
+                <CardActions border style={{textAlign: "center"}}>
                   <Button colored>创建于: {this.renderTime(article.created)}</Button>
                   <Button colored>修改于: {this.renderTime(article.updated)}</Button>
                 </CardActions>
                 <CardActions border>
-                  <ul className={s.cardAction}>
+                  <ul className={s.cardAction} style={{textAlign: "center", paddingLeft: "0"}}>
                     <li><Link to={`/notes/edit/${article.id}`}><Button raised ripple>编辑</Button></Link></li>
                     <li><Link to={`/notes/view/${article.id}`}><Button raised ripple>查看</Button></Link></li>
-                    <Button colored onClick={ () => this.handleOpenDialog(article.title, article.path)} raised
-                            ripple>历史</Button>
+                    <li><Button colored onClick={ () => this.handleOpenDialog(article.title, article.path)} raised
+                                ripple>历史</Button></li>
                   </ul>
                 </CardActions>
               </Card>
