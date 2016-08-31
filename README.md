@@ -1,5 +1,7 @@
 # Mole(墨乐) - a github-base note
- 
+
+[![Build Status](https://travis-ci.org/phodal/mole.svg?branch=master)](https://travis-ci.org/phodal/mole)
+
 > A GitHub-base Cloud Note, design for open & free GitHub User.
 
 Online Demo: [https://phodal.github.io/mole-web/](https://phodal.github.io/mole-web/)
