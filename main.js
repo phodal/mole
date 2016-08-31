@@ -10,6 +10,7 @@ import ErrorPage from "./pages/error";
 import IdeasPage from "./pages/ideas";
 import IdeasCreatePage from "./pages/ideas/create";
 import NoteEditPage from "./pages/notes/edit";
+import NoteCreatePage from "./pages/notes/create";
 import NoteViewPage from "./pages/notes/view";
 import SettingsPage from "./pages/settings";
 import store from "./core/store";
@@ -23,6 +24,7 @@ function startApp() {
           <IndexRoute name="notes" component={NoteListPage}/>
           <Route name="notes.edit" path="/notes/edit/:id" component={NoteEditPage}/>
           <Route name="notes.view" path="/notes/view/:id" component={NoteViewPage}/>
+          <Route name="notes.create" path="/notes/create" component={NoteCreatePage}/>
 
           <Route name="ideas" path="/ideas" component={IdeasPage}/>
           <Route name="ideas.create" path="/ideas/create" component={IdeasCreatePage}/>

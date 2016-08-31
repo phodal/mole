@@ -12,7 +12,7 @@ var moment = require('moment');
 
 moment.locale('zh-CN');
 
-class NoteListPage extends React.Component {
+class NoteCreatePage extends React.Component {
   constructor(props) {
     super(props);
     var content = localStorage.getItem("content");
@@ -100,10 +100,12 @@ class NoteListPage extends React.Component {
             )}
           </div>
 
-          <FABButton colored
-                     style={{float: "right", position: "fixed", right: "20px", bottom: "20px", zIndex: "100"}}>
-            <i className="fa fa-plus"/>
-          </FABButton>
+          <Link to='/notes/create'>
+            <FABButton colored
+                       style={{float: "right", position: "fixed", right: "20px", bottom: "20px", zIndex: "100"}}>
+              <i className="fa fa-plus"/>
+            </FABButton>
+          </Link>
 
           <Dialog open={this.state.openDialog} style={{maxHeight: '80%', overflow: 'scroll'}}>
             <DialogContent>
@@ -129,4 +131,4 @@ class NoteListPage extends React.Component {
 
 }
 
-export default NoteListPage;
+export default NoteCreatePage;
