@@ -1,11 +1,11 @@
-import { React, PropType } from 'react';
+import React, { PropTypes } from 'react';
 
 class StyleButton extends React.Component {
 
   static propTypes = {
-    style: PropType.object,
-    active: PropType.object,
-    label: PropType.string,
+    style: PropTypes.string,
+    active: PropTypes.function,
+    label: PropTypes.string,
   };
 
   constructor(props) {
