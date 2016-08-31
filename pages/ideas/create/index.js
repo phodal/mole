@@ -8,7 +8,7 @@ class IdeasCreatePage extends React.Component {
 
   render() {
     return (
-      <NoteLayout>
+      <NoteLayout rootUrl='/ideas'>
         Creates
       </NoteLayout>
     )
