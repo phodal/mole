@@ -33,13 +33,11 @@ class NoteViewPage extends React.Component {
 
     if (content) {
       const articles = JSON.parse(content);
-      const basicArticleInfo = filter(articles, { id: id })[0];
+      const basicArticleInfo = filter(articles, { id })[0];
       const articleUrl = baseUrl + basicArticleInfo.path;
       fetch(articleUrl)
-        .then(function (response) {
-          return response.text();
-        })
-        .then(function (data) {
+        .then(response => response.text())
+        .then(data => {
           localStorage.setItem(`note.${id}`, data);
 
           self.setState({
