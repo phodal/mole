@@ -17,6 +17,8 @@
     "github-api": "^2.3.0",
     "history": "^3.0.0",
     "humps": "^1.1.0",
+    "immutable": "^3.8.1",
+    "keymirror": "^0.1.1",
     "lodash": "latest",
     "moment": "^2.14.1",
     "react": "15.3.0",

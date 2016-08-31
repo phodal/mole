@@ -1,4 +1,6 @@
 import React, {PropTypes} from "react";
+import { connect } from 'react-redux';
+
 import Button from "react-mdl/lib/Button";
 import FABButton from "react-mdl/lib/FABButton";
 import Spinner from "react-mdl/lib/Spinner";
@@ -8,6 +10,9 @@ import {Link} from "react-router";
 import Layout from "../../components/Layout";
 import ChangeHistory from "../../components/ChangeHistory";
 import s from "./styles.css";
+
+import { loadNotes } from '../../core/action/notes.action.js';
+
 var moment = require('moment');
 
 moment.locale('zh-CN');
@@ -22,9 +27,7 @@ class NoteListPage extends React.Component {
       content = [];
     }
 
-    this.state = {
-      articles: content,
-    };
+    this.state = {};
 
     this.handleOpenDialog = this.handleOpenDialog.bind(this);
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
@@ -56,19 +59,20 @@ class NoteListPage extends React.Component {
     document.title = "Home";
     var self = this;
 
-    var api = "https://phodal.github.io/mole-test/api/all.json";
-    fetch(api)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        localStorage.setItem("base_url", data.source);
-        localStorage.setItem("content", JSON.stringify(data.content));
-
-        self.setState({
-          articles: data.content
-        });
-      })
+    // var api = "https://phodal.github.io/mole-test/api/all.json";
+    // fetch(api)
+    //   .then(function (response) {
+    //     return response.json();
+    //   })
+    //   .then(function (data) {
+    //     localStorage.setItem("base_url", data.source);
+    //     localStorage.setItem("content", JSON.stringify(data.content));
+    //
+    //     self.setState({
+    //       articles: data.content
+    //     });
+    //   })
+    this.props.loadNotes();
   }
 
   renderTime(time) {
@@ -76,11 +80,15 @@ class NoteListPage extends React.Component {
   }
 
   render() {
-    if (this.state.articles) {
+    if (this.props.articles) {
+      let _articles = this.props.articles.toArray();
+
       return (
         <Layout className={s.content}>
           <div className="note-list">
-            {this.state.articles.map((article, i) =>
+            { _articles.map((a, i) => {
+              let article = a.toObject();
+              return (
               <Card shadow={0} key={i} style={{width: '100%', margin: '0 auto 16px'}}>
                 <CardTitle>{article.title}</CardTitle>
                 <CardText>{article.description}</CardText>
@@ -97,6 +105,7 @@ class NoteListPage extends React.Component {
                   </ul>
                 </CardActions>
               </Card>
+              )}
             )}
           </div>
 
@@ -129,4 +138,10 @@ class NoteListPage extends React.Component {
 
 }
 
-export default NoteListPage;
+function mapStateToProps(state) {
+  return {
+    articles: state.notes
+  }
+}
+
+export default connect(mapStateToProps, { loadNotes })(NoteListPage);
