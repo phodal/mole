@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types, global-require */
+
 import * as React from 'react';
 import { Editor, EditorState, ContentState, convertFromHTML, RichUtils } from 'draft-js';
 import StyleButton from '../StyleButton';
@@ -92,7 +94,7 @@ class EditorSection extends React.Component {
     };
 
     this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.onChange(editorState);
+    this.onChange = (changedState) => this.onChange(changedState);
 
     this.handleKeyCommand = (command) => this.handleKeyCommand(command);
     this.toggleBlockType = (type) => this.toggleBlockType(type);
@@ -150,7 +152,7 @@ class EditorSection extends React.Component {
               onChange={this.onChange}
               placeholder="Tell a story..."
               ref="editor"
-              spellCheck={true}
+              spellCheck
             />
           </div>
         </div>
