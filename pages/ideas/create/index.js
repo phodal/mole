@@ -2,6 +2,7 @@ import React from "react";
 import NoteLayout from "../../../components/NoteLayout";
 import Textfield from 'react-mdl/lib/Textfield';
 import FABButton from "react-mdl/lib/FABButton";
+import Snackbar from "react-mdl/lib/Snackbar";
 var GitHubApi = require("github-api");
 
 class IdeasCreatePage extends React.Component {
@@ -10,12 +11,14 @@ class IdeasCreatePage extends React.Component {
 
     this.state = {
       title: '',
-      body: ''
+      body: '',
+      isSnackbarActive: false
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.doCommit = this.doCommit.bind(this);
+    this.handleTimeoutSnackbar = this.handleTimeoutSnackbar.bind(this);
   }
 
   handleTitleChange(event) {
@@ -30,6 +33,10 @@ class IdeasCreatePage extends React.Component {
     });
   }
 
+  handleTimeoutSnackbar() {
+    this.setState({isSnackbarActive: false});
+  }
+
   doCommit() {
     if (!(this.state.title && this.state.body)) {
       return;
@@ -39,6 +46,7 @@ class IdeasCreatePage extends React.Component {
     const username = localStorage.getItem('settings.username');
     const email = localStorage.getItem('settings.email');
 
+    var self = this;
     var github = new GitHubApi({
       token: token,
       auth: "oauth"
@@ -53,6 +61,11 @@ class IdeasCreatePage extends React.Component {
     remoteIssue.createIssue(issue, function(err, data) {
       console.log(data);
       if (data.title) {
+        self.setState({
+          isSnackbarActive: true,
+          title: '',
+          body: ''
+        });
         console.log("creat issue successful");
       }
       if (err) {
@@ -92,6 +105,11 @@ class IdeasCreatePage extends React.Component {
         >
           <i className="fa fa-send-o"/>
         </FABButton>
+
+        <Snackbar
+          onTimeout={this.handleTimeoutSnackbar}
+          active={this.state.isSnackbarActive}>
+          Create Successful</Snackbar>
       </NoteLayout>
     )
   }
