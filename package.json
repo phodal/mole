@@ -16,7 +16,6 @@
     "fastclick": "^1.0.6",
     "github-api": "^2.3.0",
     "history": "^3.0.0",
-    "humps": "^1.1.0",
     "lodash": "latest",
     "moment": "^2.14.1",
     "react": "15.3.0",
@@ -28,7 +27,6 @@
     "react-router": "^2.7.0",
     "react-toolbox": "^1.1.2",
     "redux": "^3.5.2",
-    "superagent": "^2.2.0",
     "to-markdown": "^3.0.1",
     "whatwg-fetch": "^1.0.0"
   },
