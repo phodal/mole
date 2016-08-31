@@ -7,3 +7,11 @@
   margin: 0 auto 16px;
   min-height: inherit;
 }
+
+.fabButton {
+  float: right;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+}

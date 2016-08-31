@@ -1,9 +1,10 @@
-import React from "react";
-import NoteLayout from "../../../components/NoteLayout";
+import React from 'react';
+import NoteLayout from '../../../components/NoteLayout';
 import Textfield from 'react-mdl/lib/Textfield';
-import FABButton from "react-mdl/lib/FABButton";
-import Snackbar from "react-mdl/lib/Snackbar";
-var GitHubApi = require("github-api");
+import FABButton from 'react-mdl/lib/FABButton';
+import Snackbar from 'react-mdl/lib/Snackbar';
+import s from './styles.css';
+const GitHubApi = require('github-api');
 
 class IdeasCreatePage extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class IdeasCreatePage extends React.Component {
     this.state = {
       title: '',
       body: '',
-      isSnackbarActive: false
+      isSnackbarActive: false,
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -23,18 +24,20 @@ class IdeasCreatePage extends React.Component {
 
   handleTitleChange(event) {
     this.setState({
-      title: event.target.value
+      title: event.target.value,
     });
   }
 
   handleBodyChange(event) {
     this.setState({
-      body: event.target.value
+      body: event.target.value,
     });
   }
 
   handleTimeoutSnackbar() {
-    this.setState({isSnackbarActive: false});
+    this.setState({
+      isSnackbarActive: false,
+    });
   }
 
   doCommit() {
@@ -43,29 +46,26 @@ class IdeasCreatePage extends React.Component {
     }
 
     const token = localStorage.getItem('settings.token');
-    const username = localStorage.getItem('settings.username');
-    const email = localStorage.getItem('settings.email');
 
-    var self = this;
-    var github = new GitHubApi({
-      token: token,
-      auth: "oauth"
+    const self = this;
+    const github = new GitHubApi({
+      token,
+      auth: 'oauth',
     });
-    var remoteIssue = github.getIssues('phodal', 'mole-test');
+    const remoteIssue = github.getIssues('phodal', 'mole-test');
 
-    var issue = {
+    const issue = {
       title: this.state.title,
-      body: this.state.body
+      body: this.state.body,
     };
 
-    remoteIssue.createIssue(issue, function(err, data) {
+    remoteIssue.createIssue(issue, (err, data) => {
       if (data.title) {
         self.setState({
           isSnackbarActive: true,
           title: '',
-          body: ''
+          body: '',
         });
-        console.log("creat issue successful");
       }
       if (err) {
         console.log(err);
@@ -75,15 +75,15 @@ class IdeasCreatePage extends React.Component {
 
   render() {
     return (
-      <NoteLayout rootUrl='/ideas'>
-        <div style={{padding: '20px'}}>
+      <NoteLayout rootUrl="/ideas">
+        <div style={{ padding: '20px' }}>
           <div>
             <Textfield
               floatingLabel
               required
               onChange={this.handleTitleChange}
               label="标题..."
-              style={{width: '100%'}}
+              style={{ width: '100%' }}
             />
           </div>
           <div>
@@ -93,24 +93,26 @@ class IdeasCreatePage extends React.Component {
               required
               label="内容..."
               rows={10}
-              style={{width: '100%', height: '100%', display: 'block'}}
+              style={{ width: '100%', height: '100%', display: 'block' }}
             />
           </div>
         </div>
 
         <FABButton
           onClick={this.doCommit}
-          style={{float: "right", position: "fixed", right: "20px", bottom: "20px", zIndex: "100"}}
+          className={s.fabButton}
         >
-          <i className="fa fa-send-o"/>
+          <i className="fa fa-send-o" />
         </FABButton>
 
         <Snackbar
           onTimeout={this.handleTimeoutSnackbar}
-          active={this.state.isSnackbarActive}>
-          Create Successful</Snackbar>
+          active={this.state.isSnackbarActive}
+        >
+          Create Successful
+        </Snackbar>
       </NoteLayout>
-    )
+    );
   }
 }
 

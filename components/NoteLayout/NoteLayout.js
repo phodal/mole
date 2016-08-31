@@ -1,12 +1,12 @@
-import React, {PropTypes} from "react";
-import cx from "classnames";
-import s from "./NoteLayout.css";
-import {Link} from "react-router";
+import React, { PropTypes } from 'react';
+import cx from 'classnames';
+import s from './NoteLayout.css';
+import { Link } from 'react-router';
 
 class NoteLayout extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    rootUrl: PropTypes.string
+    rootUrl: PropTypes.string,
   };
 
   componentDidMount() {
@@ -18,9 +18,9 @@ class NoteLayout extends React.Component {
   }
 
   render() {
-    var link = "/";
-    if(this.props.rootUrl) {
-      const {rootUrl} = this.props;
+    let link = '/';
+    if (this.props.rootUrl) {
+      const { rootUrl } = this.props;
       link = rootUrl;
     }
 
@@ -36,7 +36,7 @@ class NoteLayout extends React.Component {
             </div>
           </header>
           <main className="mdl-layout__content">
-            <div {...this.props} className={cx(s.content, this.props.className)}/>
+            <div {...this.props} className={cx(s.content, this.props.className)} />
           </main>
         </div>
       </div>

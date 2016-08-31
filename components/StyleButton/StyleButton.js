@@ -1,11 +1,19 @@
-import * as React from "react";
+import { React, PropType } from 'react';
 
 class StyleButton extends React.Component {
-  constructor() {
-    super();
+
+  static propTypes = {
+    style: PropType.object,
+    active: PropType.object,
+    label: PropType.string,
+  };
+
+  constructor(props) {
+    super(props);
+    const self = this;
     this.onToggle = (e) => {
       e.preventDefault();
-      this.props.onToggle(this.props.style);
+      self.props.onToggle(self.props.style);
     };
   }
 

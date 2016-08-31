@@ -1,11 +1,14 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import s from './ChangeHistory.css';
-import Button from 'react-mdl/lib/Button';
+const moment = require('moment');
 
-var moment = require('moment');
 moment.locale('zh-CN');
 
 class ChangeHistory extends React.Component {
+  static propTypes = {
+    data: PropTypes.object,
+  };
+
   renderTime(time) {
     return moment(time).fromNow();
   }
@@ -16,7 +19,10 @@ class ChangeHistory extends React.Component {
     return (
       <div>
         <div className={s.detail}>
-          <p><span>{this.renderTime(history.commit.author.date)}</span>，<span>{history.commit.message}</span></p>
+          <p>
+            <span>{this.renderTime(history.commit.author.date)}</span>，
+            <span>{history.commit.message}</span>
+          </p>
         </div>
       </div>
     );
