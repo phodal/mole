@@ -59,7 +59,6 @@ class IdeasCreatePage extends React.Component {
     };
 
     remoteIssue.createIssue(issue, function(err, data) {
-      console.log(data);
       if (data.title) {
         self.setState({
           isSnackbarActive: true,
