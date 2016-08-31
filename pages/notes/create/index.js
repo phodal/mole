@@ -3,7 +3,9 @@ import NoteLayout from "../../../components/NoteLayout";
 import Textfield from 'react-mdl/lib/Textfield';
 import FABButton from "react-mdl/lib/FABButton";
 import Snackbar from "react-mdl/lib/Snackbar";
+import {filter, assignIn} from "lodash";
 var GitHubApi = require("github-api");
+var moment = require('moment');
 
 class NotesCreatePage extends React.Component {
   constructor(props) {
@@ -59,6 +61,7 @@ class NotesCreatePage extends React.Component {
       auth: "oauth"
     });
     var repo = github.getRepo('phodal', 'mole-test');
+    var self = this;
 
     var options = {
       committer: {
@@ -67,14 +70,54 @@ class NotesCreatePage extends React.Component {
       },
     };
 
-    repo.writeFile('gh-pages', 'notes/' + this.state.url, this.state.body, 'Robot: add article ' + this.state.title, options, function(err, data) {
-      if (data.commit) {
-        console.log("commit successful");
-      }
-      if (err) {
-        console.log(err);
-      }
-    });
+    var api = "https://phodal.github.io/mole-test/api/all.json";
+    fetch(api)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        var content = JSON.stringify(data.content);
+
+        localStorage.setItem("base_url", data.source);
+        localStorage.setItem("content", content);
+
+        var path = 'notes/' + self.state.url + '.md';
+
+        var isPathExists = filter(content, {path: path});
+        if (isPathExists.length === 0) {
+          repo.writeFile('gh-pages', path, self.state.body, 'Robot: add article ' + self.state.title, options, function(err, data) {
+            if (data.commit) {
+              console.log("create note successful");
+            }
+            if (err) {
+              console.log(err);
+            }
+          });
+
+          var response = data;
+
+          var articleInfo = {
+            description: self.state.body.substr(0, 100),
+            title: self.state.title,
+            path: path,
+            created: moment().format(),
+            updated: moment().format(),
+            id: response.latest.id + 1
+          };
+          response.latest.id = response.latest.id + 1;
+          response.content.push(articleInfo);
+
+          repo.writeFile('gh-pages', 'api/all.json', JSON.stringify(response), 'Robot: update API ', options, function(err, data) {
+            if (data.commit) {
+              console.log("update API successful");
+            }
+            if (err) {
+              console.log(err);
+            }
+          });
+        }
+
+      });
   }
 
   render() {
