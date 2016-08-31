@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import NoteLayout from '../../../components/NoteLayout';
 import s from './styles.css';
 import { filter, isObject } from 'lodash';
@@ -13,6 +13,9 @@ const jsdiff = require('diff');
 const MarkdownEditor = require('react-md-editor');
 
 class NoteEditPage extends React.Component {
+  static propTypes = {
+    routeParams: PropTypes.object,
+  };
 
   constructor(props) {
     super(props);
@@ -31,22 +34,20 @@ class NoteEditPage extends React.Component {
   componentDidMount() {
     document.title = 'Edit - Note';
 
-    var id = this.props.routeParams.id;
-    var content = localStorage.getItem("content");
-    var baseUrl = localStorage.getItem("base_url");
-    var self = this;
+    const id = this.props.routeParams.id;
+    const content = localStorage.getItem('content');
+    const baseUrl = localStorage.getItem('base_url');
+    const self = this;
 
     if (content) {
-      var articles = JSON.parse(content);
-      self.basicArticleInfo = filter(articles, {id: id})[0];
-      var articleUrl = baseUrl + self.basicArticleInfo.path;
+      const articles = JSON.parse(content);
+      self.basicArticleInfo = filter(articles, { id })[0];
+      const articleUrl = baseUrl + self.basicArticleInfo.path;
       fetch(articleUrl)
-        .then(function(response) {
-          return response.text();
-        })
-        .then(function(data) {
+        .then(response => response.text())
+        .then(data => {
           self.originContent = data;
-          const md = new MarkdownIt({html: true, linkify: true});
+          const md = new MarkdownIt({ html: true, linkify: true });
           const renderedHTML = md.render(data);
           self.setState({
             article: renderedHTML,
@@ -67,13 +68,16 @@ class NoteEditPage extends React.Component {
   updateArticle(state) {
     this.setState({
       markdown: state,
-    })
+    });
   }
 
   contentSubmit() {
-    var content, diff, hasDiff;
+    let content;
+    let diff;
+    let hasDiff;
+
     if (this.editorType === 'rich') {
-      var hasEnterContent = isObject(this.editorContent);
+      const hasEnterContent = isObject(this.editorContent);
       if (hasEnterContent) {
         return;
       }
@@ -92,7 +96,6 @@ class NoteEditPage extends React.Component {
     }
 
     this.doCommit(content);
-
   }
 
   doCommit(content) {
@@ -102,19 +105,20 @@ class NoteEditPage extends React.Component {
 
     const path = this.basicArticleInfo.path;
     const github = new GitHubApi({
-      token: token,
-      auth: "oauth"
+      token,
+      auth: 'oauth',
     });
     const repo = github.getRepo('phodal', 'mole-test');
 
     const options = {
       committer: {
         name: username,
-        email: email,
+        email,
       },
     };
 
-    repo.writeFile('gh-pages', path, content, 'Robot: test for add article', options, function(err, data) {
+    const message = 'Robot: test for add article';
+    repo.writeFile('gh-pages', path, content, message, options, (err, data) => {
       if (data.commit) {
         console.log('commit successful');
       }
@@ -125,19 +129,19 @@ class NoteEditPage extends React.Component {
   }
 
   render() {
-  let editor;
-  if (this.editorType === 'rich') {
-    editor =
-      <div className="markdown">
-        <EditorSection
-          onChange={this.onChange}
-          content={this.state.article}
-          ref={(c) => this.editorContent = c}
-        />
-      </div>;
-  } else {
-    editor = <MarkdownEditor value={this.state.markdown} onChange={this.updateArticle}/>;
-  }
+    let editor;
+    if (this.editorType === 'rich') {
+      editor = (
+        <div className="markdown">
+          <EditorSection
+            onChange={this.onChange}
+            content={this.state.article}
+            ref={(c) => { this.editorContent = c; }}
+          />
+        </div>);
+    } else {
+      editor = (<MarkdownEditor value={this.state.markdown} onChange={this.updateArticle} />);
+    }
 
     if (this.state.article) {
       return (
@@ -146,7 +150,7 @@ class NoteEditPage extends React.Component {
             <header className={`mdl-layout__header ${s.header}`}>
               <div className={`mdl-layout__header-row ${s.row}`}>
                 <Link className={`mdl-layout-title ${s.title}`} to="/" onClick={this.contentSubmit}>
-                  <span><i className="fa fa-chevron-left"/> 返回</span>
+                  <span><i className="fa fa-chevron-left" /> 返回</span>
                 </Link>
                 <div className="mdl-layout-spacer"></div>
               </div>
@@ -158,13 +162,13 @@ class NoteEditPage extends React.Component {
         </div>
       );
     }
-    
-  return (
-    <NoteLayout className={s.content}>
-      <Spinner />
-    </NoteLayout>
-  )
-}
+
+    return (
+      <NoteLayout className={s.content}>
+        <Spinner />
+      </NoteLayout>
+    );
+  }
 }
 
 export default NoteEditPage;
