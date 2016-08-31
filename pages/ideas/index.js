@@ -25,10 +25,10 @@ class IdeasPage extends React.Component {
       ideasRepo = "https://api.github.com/repos/" + ideasRepo + "/issues";
     }
     fetch(ideasRepo)
-      .then(function (response) {
+      .then(function(response) {
         return response.json();
       })
-      .then(function (data) {
+      .then(function(data) {
         self.setState({
           ideas: data
         });
@@ -49,10 +49,12 @@ class IdeasPage extends React.Component {
         <Layout className={s.content}>
           <div className="note-list">
             {this.state.ideas.map((idea, i) =>
-              <Card shadow={0} key={i} className={s.card}>
-                <CardTitle>{idea.title}</CardTitle>
-                <CardText>{this.getSubBody(idea.body)}</CardText>
-              </Card>
+              <Link key={i} to={`/ideas/view/${idea.number}`} style={{textDecoration: 'none'}}>
+                <Card shadow={0} className={s.card}>
+                  <CardTitle>{idea.title}</CardTitle>
+                  <CardText>{this.getSubBody(idea.body)}</CardText>
+                </Card>
+              </Link>
             )}
           </div>
 
