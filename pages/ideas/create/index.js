@@ -1,6 +1,7 @@
 import React from "react";
 import NoteLayout from "../../../components/NoteLayout";
 import Textfield from 'react-mdl/lib/Textfield';
+import FABButton from "react-mdl/lib/FABButton";
 
 class IdeasCreatePage extends React.Component {
   constructor(props) {
@@ -27,6 +28,10 @@ class IdeasCreatePage extends React.Component {
             />
           </div>
         </div>
+
+        <FABButton style={{float: "right", position: "fixed", right: "20px", bottom: "20px", zIndex: "100"}}>
+          <i className="fa fa-send-o"/>
+        </FABButton>
       </NoteLayout>
     )
   }
