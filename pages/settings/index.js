@@ -1,29 +1,29 @@
-import React from "react";
-import Layout from "../../components/Layout";
-import s from "./styles.css";
-import {Textfield, List, RadioGroup, Radio} from "react-mdl/lib";
+import React from 'react';
+import Layout from '../../components/Layout';
+import s from './styles.css';
+import { Textfield, List, RadioGroup, Radio } from 'react-mdl/lib';
 
 class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
 
-    var getLSItem = function (key) {
-      var result = localStorage.getItem(key);
+    function getLSItem(key) {
+      const result = localStorage.getItem(key);
       if (result === null) {
-        return ''
+        return '';
       }
       return result;
-    };
+    }
 
-    var repo = getLSItem('settings.repo');
-    var token = getLSItem('settings.token');
-    var editor = getLSItem('settings.editor');
-    var username = getLSItem('settings.username');
-    var email = getLSItem('settings.email');
-    var ideas_repo = getLSItem('settings.ideas');
+    let editor = getLSItem('settings.editor');
+    const repo = getLSItem('settings.repo');
+    const token = getLSItem('settings.token');
+    const username = getLSItem('settings.username');
+    const email = getLSItem('settings.email');
+    const ideasRepo = getLSItem('settings.ideas');
 
     if (!editor) {
-      editor = 'markdown'
+      editor = 'markdown';
     }
 
     this.state = {
@@ -31,7 +31,7 @@ class SettingsPage extends React.Component {
       GITHUB_TOKEN: token,
       COMMIT_USERNAME: username,
       COMMIT_EMAIL: email,
-      IDEAS_REPO: ideas_repo,
+      IDEAS_REPO: ideasRepo,
       EDITOR: editor,
     };
 
@@ -47,43 +47,38 @@ class SettingsPage extends React.Component {
   }
 
   handleNotesRepoChange(event) {
-    var repo = event.target.value;
     this.setState({
-      NOTES_REPO: repo
+      NOTES_REPO: event.target.value,
     });
-    localStorage.setItem('settings.repo', repo);
+    localStorage.setItem('settings.repo', event.target.value);
   }
 
   handleIdeasRepoChange(event) {
-    var repo = event.target.value;
     this.setState({
-      IDEAS_REPO: repo
+      IDEAS_REPO: event.target.value,
     });
-    localStorage.setItem('settings.ideas', repo);
+    localStorage.setItem('settings.ideas', event.target.value);
   }
 
   handleTokenChange(event) {
-    var token = event.target.value;
     this.setState({
-      GITHUB_TOKEN: token
+      GITHUB_TOKEN: event.target.value,
     });
-    localStorage.setItem('settings.token', token);
+    localStorage.setItem('settings.token', event.target.value);
   }
 
   handleUsernameChange(event) {
-    var username = event.target.value;
     this.setState({
-      COMMIT_USERNAME: username
+      COMMIT_USERNAME: event.target.value,
     });
-    localStorage.setItem('settings.username', username);
+    localStorage.setItem('settings.username', event.target.value);
   }
 
   handleEmailChange(event) {
-    var email = event.target.value;
     this.setState({
-      COMMIT_EMAIL: email
+      COMMIT_EMAIL: event.target.value,
     });
-    localStorage.setItem('settings.email', email);
+    localStorage.setItem('settings.email', event.target.value);
   }
 
   changeDefaultEditor(event) {
@@ -100,7 +95,7 @@ class SettingsPage extends React.Component {
           label="云笔记 Repo"
           floatingLabel
           value={this.state.NOTES_REPO}
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
         />
         <Textfield
           onChange={this.handleIdeasRepoChange}
@@ -109,33 +104,39 @@ class SettingsPage extends React.Component {
           label="Ideas Repo"
           floatingLabel
           value={this.state.IDEAS_REPO}
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
         />
         <Textfield
           onChange={this.handleTokenChange}
           label="GitHub Token"
           floatingLabel
           value={this.state.GITHUB_TOKEN}
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
         />
         <Textfield
           label="Commit Username"
           floatingLabel
           onChange={this.handleUsernameChange}
           value={this.state.COMMIT_USERNAME}
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
         />
         <Textfield
           label="Commit Email"
           floatingLabel
           onChange={this.handleEmailChange}
           value={this.state.COMMIT_EMAIL}
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
         />
         <div>
           <label>编辑器类型</label>
           <List>
-            <RadioGroup childContainer="li" name="demo2" value={this.state.EDITOR} onChange={this.changeDefaultEditor}>
+            <RadioGroup
+              childContainer="li"
+              name="demo2"
+              value={this.state.EDITOR}
+              onChange={this.changeDefaultEditor}
+            >
+
               <Radio value="markdown" ripple>Markdown</Radio>
               <Radio value="rich">富文本(Beta)</Radio>
             </RadioGroup>
