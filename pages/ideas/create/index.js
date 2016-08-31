@@ -30,15 +30,10 @@ class IdeasCreatePage extends React.Component {
     });
   }
 
-
   doCommit() {
     if (!(this.state.title && this.state.body)) {
       return;
     }
-
-    console.log(this.state);
-    console.log(this.state.body);
-
 
     const token = localStorage.getItem('settings.token');
     const username = localStorage.getItem('settings.username');
@@ -100,7 +95,6 @@ class IdeasCreatePage extends React.Component {
       </NoteLayout>
     )
   }
-
 }
 
 export default IdeasCreatePage;
