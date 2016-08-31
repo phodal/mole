@@ -9,28 +9,27 @@ Online Demo: [https://phodal.github.io/mole-web/](https://phodal.github.io/mole-
 Features: 
 
  - GitHub as Database
- - GitHub Page as Blog / Note for Display
+ - GitHub Page as Blog / Note for Display (TBC)
  - Markdown Support
  - Issues as Idea List 
  
 跨平台
 
  - Web——GitHub Page发布。react-static-boilerplate提供了一个脚本可以直接发布代码到GitHub Page。
- - Mobile——支援Android和iOS等移动版本。由于使用的是React MDL作为UI框架，所以只需要写点简单的Cordova脚本就可以实现打包。
- - Desktop——支援Electron桌面。同样的，使用个脚本来实现。
+ - Mobile——Android和iOS等移动版本。由于使用的是React MDL作为UI框架，所以只需要写点简单的Cordova脚本就可以实现打包。
+ - Desktop——Electron桌面。同样的，使用个脚本来实现。
  - Chrome插件(TBC)
  - 微信集成(TBC)
 
-Setup
+Documents
 ---
+
+### Setup
 
 ```
 git clone git@github.com:phodal/mole.git
 npm install
 ```
-
-Documents
----
 
 ### 技术栈
 
@@ -70,10 +69,6 @@ GitHub API
 Idea Example: [https://github.com/phodal/ideas/issues](https://github.com/phodal/ideas/issues)
 
 Commit History: [https://api.github.com/repos/phodal/mole-test/commits?path=notes/hello-world.md](https://api.github.com/repos/phodal/mole-test/commits?path=notes/hello-world.md)
-
-### TODO
-
- - Localstorage 回收。 Localstorage 的存储大小为5M。
 
 License
 ---
