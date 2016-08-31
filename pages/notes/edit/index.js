@@ -1,18 +1,16 @@
 import React from 'react';
 import NoteLayout from '../../../components/NoteLayout';
 import s from './styles.css';
-import {filter} from 'lodash';
+import { filter, isObject } from 'lodash';
 import 'whatwg-fetch';
 import Spinner from 'react-mdl/lib/Spinner';
-import EditorSection from "../../../components/EditorSection";
-import {Link} from "react-router";
-import {isObject} from 'lodash';
-
-var GitHubApi = require("github-api");
-var toMarkdown = require('to-markdown');
-var MarkdownIt = require('markdown-it');
-var jsdiff = require('diff');
-var MarkdownEditor = require('react-md-editor');
+import EditorSection from '../../../components/EditorSection';
+import { Link } from 'react-router';
+const GitHubApi = require('github-api');
+const toMarkdown = require('to-markdown');
+const MarkdownIt = require('markdown-it');
+const jsdiff = require('diff');
+const MarkdownEditor = require('react-md-editor');
 
 class NoteEditPage extends React.Component {
 
@@ -21,10 +19,11 @@ class NoteEditPage extends React.Component {
     this.state = {
       isDataReady: false,
     };
-    this._editor = "";
-    this.originContent = "";
+
+    this.editorContent = '';
+    this.originContent = '';
     this.contentSubmit = this.contentSubmit.bind(this);
-    this._onChange = this._onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.updateArticle = this.updateArticle.bind(this);
     this.editorType = localStorage.getItem('settings.editor');
   }
@@ -47,39 +46,39 @@ class NoteEditPage extends React.Component {
         })
         .then(function(data) {
           self.originContent = data;
-          var md = new MarkdownIt({html: true, linkify: true});
-          var renderedHTML = md.render(data);
+          const md = new MarkdownIt({html: true, linkify: true});
+          const renderedHTML = md.render(data);
           self.setState({
             article: renderedHTML,
             markdown: data,
-            isDataReady: true
+            isDataReady: true,
           });
-        })
+        });
     } else {
-      console.log("-----------------------");
-      console.log("Back to Home and Refresh");
+      console.log('-----------------------');
+      console.log('Back to Home and Refresh');
     }
   }
 
-  _onChange(state) {
-    this._editor = state;
+  onChange(state) {
+    this.editorContent = state;
   }
 
   updateArticle(state) {
     this.setState({
-      markdown: state
+      markdown: state,
     })
   }
 
   contentSubmit() {
     var content, diff, hasDiff;
     if (this.editorType === 'rich') {
-      var hasEnterContent = isObject(this._editor);
+      var hasEnterContent = isObject(this.editorContent);
       if (hasEnterContent) {
         return;
       }
 
-      content = toMarkdown(this._editor).toString();
+      content = toMarkdown(this.editorContent).toString();
       diff = jsdiff.diffSentences(this.originContent, content);
       hasDiff = diff && diff.length > 1;
     } else {
@@ -101,23 +100,23 @@ class NoteEditPage extends React.Component {
     const username = localStorage.getItem('settings.username');
     const email = localStorage.getItem('settings.email');
 
-    var path = this.basicArticleInfo.path;
-    var github = new GitHubApi({
+    const path = this.basicArticleInfo.path;
+    const github = new GitHubApi({
       token: token,
       auth: "oauth"
     });
-    var repo = github.getRepo('phodal', 'mole-test');
+    const repo = github.getRepo('phodal', 'mole-test');
 
-    var options = {
+    const options = {
       committer: {
         name: username,
-        email: email
+        email: email,
       },
     };
 
     repo.writeFile('gh-pages', path, content, 'Robot: test for add article', options, function(err, data) {
       if (data.commit) {
-        console.log("commit successful");
+        console.log('commit successful');
       }
       if (err) {
         console.log(err);
@@ -126,19 +125,19 @@ class NoteEditPage extends React.Component {
   }
 
   render() {
-    var editor;
-    if (this.editorType === 'rich') {
-      editor =
-        <div className="markdown">
-          <EditorSection
-            onChange={this._onChange}
-            content={this.state.article}
-            ref={(c) => this._editor = c}
-          />
-        </div>;
-    } else {
-      editor = <MarkdownEditor value={this.state.markdown} onChange={this.updateArticle}/>;
-    }
+  let editor;
+  if (this.editorType === 'rich') {
+    editor =
+      <div className="markdown">
+        <EditorSection
+          onChange={this.onChange}
+          content={this.state.article}
+          ref={(c) => this.editorContent = c}
+        />
+      </div>;
+  } else {
+    editor = <MarkdownEditor value={this.state.markdown} onChange={this.updateArticle}/>;
+  }
 
     if (this.state.article) {
       return (
@@ -158,14 +157,14 @@ class NoteEditPage extends React.Component {
           </div>
         </div>
       );
-    } else {
-      return (
-        <NoteLayout className={s.content}>
-          <Spinner />
-        </NoteLayout>
-      )
     }
-  }
+    
+  return (
+    <NoteLayout className={s.content}>
+      <Spinner />
+    </NoteLayout>
+  )
+}
 }
 
 export default NoteEditPage;
