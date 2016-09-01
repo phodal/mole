@@ -33,23 +33,6 @@ class NoteCreatePage extends React.Component {
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
   }
 
-  componentDidMount() {
-    document.title = 'Home';
-    const self = this;
-
-    const api = 'https://phodal.github.io/mole-test/api/all.json';
-    fetch(api)
-      .then(response => response.json())
-      .then(data => {
-        localStorage.setItem('base_url', data.source);
-        localStorage.setItem('content', JSON.stringify(data.content));
-
-        self.setState({
-          articles: data.content,
-        });
-      });
-  }
-
   handleOpenDialog(title, path) {
     const self = this;
     const url = `https://api.github.com/repos/phodal/mole-test/commits?path=${path}`;
@@ -70,8 +53,6 @@ class NoteCreatePage extends React.Component {
     });
   }
 
-<<<<<<< 2765259946592b09df28f23cc6b75dc6ec199d17
-=======
   componentDidMount() {
     document.title = "Home";
     var self = this;
@@ -92,7 +73,6 @@ class NoteCreatePage extends React.Component {
     this.props.loadNotes();
   }
 
->>>>>>> Get articles from reducer
   renderTime(time) {
     return moment(time).fromNow();
   }
@@ -104,15 +84,10 @@ class NoteCreatePage extends React.Component {
       return (
         <Layout className={s.content}>
           <div className="note-list">
-<<<<<<< 2765259946592b09df28f23cc6b75dc6ec199d17
-            {this.state.articles.map((article, i) =>
-              <Card shadow={0} key={i} style={{ width: '100%', margin: '0 auto 16px' }}>
-=======
             { _articles.map((a, i) => {
               let article = a.toObject();
               return (
               <Card shadow={0} key={i} style={{width: '100%', margin: '0 auto 16px'}}>
->>>>>>> Get articles from reducer
                 <CardTitle>{article.title}</CardTitle>
                 <CardText>{article.description}</CardText>
                 <CardActions border style={{ textAlign: 'center' }}>
@@ -176,9 +151,6 @@ class NoteCreatePage extends React.Component {
   }
 }
 
-<<<<<<< 2765259946592b09df28f23cc6b75dc6ec199d17
-export default NoteCreatePage;
-=======
 function mapStateToProps(state) {
   return {
     articles: state.notes
@@ -186,4 +158,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { loadNotes })(NoteListPage);
->>>>>>> Get articles from reducer
