@@ -57,19 +57,6 @@ class NoteCreatePage extends React.Component {
     document.title = "Home";
     var self = this;
 
-    // var api = "https://phodal.github.io/mole-test/api/all.json";
-    // fetch(api)
-    //   .then(function (response) {
-    //     return response.json();
-    //   })
-    //   .then(function (data) {
-    //     localStorage.setItem("base_url", data.source);
-    //     localStorage.setItem("content", JSON.stringify(data.content));
-    //
-    //     self.setState({
-    //       articles: data.content
-    //     });
-    //   })
     this.props.loadNotes();
   }
 
@@ -157,4 +144,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { loadNotes })(NoteListPage);
+export default connect(mapStateToProps, { loadNotes })(NoteCreatePage);
