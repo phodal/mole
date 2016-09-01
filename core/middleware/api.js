@@ -4,8 +4,10 @@ import _ from 'lodash'
 import config from '../config'
 import { camelizeKeys } from 'humps'
 
-export const CALL_API = Symbol('CALL_API')
-export const CHAIN_API = Symbol('CHAIN_API')
+// export const CALL_API = Symbol('CALL_API');
+// export const CHAIN_API = Symbol('CHAIN_API');
+export const CALL_API = 'CALL_API';
+export const CHAIN_API = 'CHAIN_API';
 
 export default ({ dispatch, getState }) => next => action => {
   if (action[CALL_API]) {
