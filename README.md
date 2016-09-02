@@ -1,4 +1,4 @@
-# Mole(墨乐) - a github-base note
+# 墨乐 - Mole, a github-base note
 
 [![Build Status](https://travis-ci.org/phodal/mole.svg?branch=master)](https://travis-ci.org/phodal/mole)
 
@@ -57,7 +57,7 @@ Run Electron
 npm run electron
 ```
 
-### 技术栈
+技术栈
 
  - React MDL
  - Fetch 
@@ -76,7 +76,7 @@ More
 
 ### API
 
-Note API in Design
+Note API
 
 Example: [https://github.com/phodal/mole-test/blob/gh-pages/api/all.json](https://github.com/phodal/mole-test/blob/gh-pages/api/all.json)
 
@@ -92,7 +92,7 @@ Example: [https://github.com/phodal/mole-test/blob/gh-pages/api/all.json](https:
 
 GitHub API
 
-Idea Example: [https://github.com/phodal/ideas/issues](https://github.com/phodal/ideas/issues)
+Ideas Example: [https://github.com/phodal/ideas/issues](https://github.com/phodal/ideas/issues)
 
 Commit History: [https://api.github.com/repos/phodal/mole-test/commits?path=notes/hello-world.md](https://api.github.com/repos/phodal/mole-test/commits?path=notes/hello-world.md)
 
