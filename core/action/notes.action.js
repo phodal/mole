@@ -3,7 +3,7 @@ import keymirror from 'keymirror';
 import { CALL_API } from '../middleware/api.js';
 
 const ActionType = keymirror({
-  LOADED_NOTES: null
+  LOADED_NOTES: null,
 });
 
 export { ActionType };
@@ -13,7 +13,7 @@ export function loadNotes() {
     [CALL_API]: {
       method: 'get',
       path: '/all.json',
-      successType: ActionType.LOADED_NOTES
-    }
+      successType: ActionType.LOADED_NOTES,
+    },
   }
 }
