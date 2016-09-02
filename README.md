@@ -26,9 +26,35 @@ Documents
 
 ### Setup
 
+Basic
+
 ```
 git clone git@github.com:phodal/mole.git
 npm install
+```
+
+Run Server
+
+```
+npm start
+```
+
+Run Android
+
+```
+./ci/run-android.sh
+```
+
+Run iOS
+
+```
+./ci/run-ios.sh
+```
+
+Run Electron
+
+```
+npm run electron
 ```
 
 ### 技术栈
