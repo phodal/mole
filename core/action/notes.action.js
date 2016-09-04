@@ -1,5 +1,4 @@
 import keymirror from 'keymirror';
-
 import { CALL_API } from '../middleware/api.js';
 
 const ActionType = keymirror({
@@ -15,5 +14,5 @@ export function loadNotes() {
       path: '/all.json',
       successType: ActionType.LOADED_NOTES,
     },
-  }
+  };
 }
