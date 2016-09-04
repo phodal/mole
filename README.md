@@ -76,7 +76,7 @@ More
 
 ### API
 
-Note API
+#### Note API
 
 Example: [https://github.com/phodal/mole-test/blob/gh-pages/api/all.json](https://github.com/phodal/mole-test/blob/gh-pages/api/all.json)
 
@@ -90,7 +90,7 @@ Example: [https://github.com/phodal/mole-test/blob/gh-pages/api/all.json](https:
 }
 ```
 
-GitHub API
+#### GitHub API
 
 Ideas Example: [https://github.com/phodal/ideas/issues](https://github.com/phodal/ideas/issues)
 
