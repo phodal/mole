@@ -21,6 +21,17 @@ Features:
  - Chrome插件(TBC)
  - 微信集成(TBC)
 
+Setup GitHub
+---
+
+1. create a GitHub branch with gh-pages for note
+2. open App and setup
+ 
+ - Repo
+ - Token
+ - Commit Username
+ - Commit Email
+
 Documents
 ---
 
