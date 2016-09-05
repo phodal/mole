@@ -42,40 +42,39 @@ function extractParams(callApi) {
 function createRequestPromise(apiActionCreator, next, getState, dispatch) {
   return (prevBody) => {
     const apiAction = apiActionCreator(prevBody);
-    const deferred = Promise.defer();
     const params = extractParams(apiAction[CALL_API]);
 
-    superAgent[params.method](params.url)
-      .send(params.body)
-      .query(params.query)
-      .end((err, res) => {
-        if (err) {
-          if (params.errorType) {
+    return new Promise((resolve, reject) => {
+      superAgent[params.method](params.url)
+        .send(params.body)
+        .query(params.query)
+        .end((err, res) => {
+          if (err) {
+            if (params.errorType) {
+              dispatch(actionWith(apiAction, {
+                type: params.errorType,
+                error: err,
+              }));
+            }
+
+            if (_.isFunction(params.afterError)) {
+              params.afterError({getState});
+            }
+            reject();
+          } else {
+            const resBody = camelizeKeys(res.body);
             dispatch(actionWith(apiAction, {
-              type: params.errorType,
-              error: err,
+              type: params.successType,
+              response: resBody,
             }));
-          }
 
-          if (_.isFunction(params.afterError)) {
-            params.afterError({ getState });
+            if (_.isFunction(params.afterSuccess)) {
+              params.afterSuccess({getState});
+            }
+            resolve(resBody);
           }
-          deferred.reject();
-        } else {
-          const resBody = camelizeKeys(res.body);
-          dispatch(actionWith(apiAction, {
-            type: params.successType,
-            response: resBody,
-          }));
-
-          if (_.isFunction(params.afterSuccess)) {
-            params.afterSuccess({ getState });
-          }
-          deferred.resolve(resBody);
-        }
-      });
-
-    return deferred.promise;
+        });
+    });
   };
 }
 
