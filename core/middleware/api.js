@@ -58,7 +58,7 @@ function createRequestPromise(apiActionCreator, next, getState, dispatch) {
             }
 
             if (_.isFunction(params.afterError)) {
-              params.afterError({getState});
+              params.afterError({ getState });
             }
             reject();
           } else {
@@ -69,7 +69,7 @@ function createRequestPromise(apiActionCreator, next, getState, dispatch) {
             }));
 
             if (_.isFunction(params.afterSuccess)) {
-              params.afterSuccess({getState});
+              params.afterSuccess({ getState });
             }
             resolve(resBody);
           }
@@ -87,8 +87,6 @@ export default ({ dispatch, getState }) => next => action => {
     });
   }
 
-  const deferred = Promise.defer();
-
   if (! action[CHAIN_API]) {
     return next(action);
   }
@@ -97,15 +95,15 @@ export default ({ dispatch, getState }) => next => action => {
     (apiActionCreator) => createRequestPromise(apiActionCreator, next, getState, dispatch)
   );
 
-  // eslint-disable-next-line arrow-body-style
-  const overall = promiseCreators.reduce((promise, creator) => {
-    return promise.then((body) => creator(body));
-  }, Promise.resolve());
+  return new Promise((resolve) => {
+    // eslint-disable-next-line arrow-body-style
+    const overall = promiseCreators.reduce((promise, creator) => {
+      return promise.then((body) => creator(body));
+    }, Promise.resolve());
 
-  overall.finally(() => {
-    deferred.resolve();
-  }).catch(() => {});
-
-  return deferred.promise;
+    overall.finally(() => {
+      resolve();
+    }).catch(() => {});
+  });
 };
 
