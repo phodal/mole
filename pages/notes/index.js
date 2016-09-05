@@ -16,7 +16,7 @@ moment.locale('zh-CN');
 
 class NoteCreatePage extends React.Component {
   static propTypes = {
-    loadNotes: PropTypes.function,
+    loadNotes: PropTypes.func,
     articles: PropTypes.object,
   };
 

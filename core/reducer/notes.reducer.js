@@ -8,7 +8,6 @@ export default function (state = defaultState, action) {
 
   switch (action.type) {
     case ActionType.LOADED_NOTES:
-      console.log('notes loaded!');
       localStorage.setItem('base_url', res.source);
       localStorage.setItem('content', JSON.stringify(res.content));
       return Immutable.fromJS(res.content);
