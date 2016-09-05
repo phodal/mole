@@ -1,23 +1,25 @@
-import React, {PropTypes} from "react";
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-
-import Button from "react-mdl/lib/Button";
-import FABButton from "react-mdl/lib/FABButton";
-import Spinner from "react-mdl/lib/Spinner";
-import {Card, CardTitle, CardText, CardActions} from "react-mdl/lib/Card";
-import {Dialog, DialogContent, DialogActions} from "react-mdl/lib/Dialog";
-import {Link} from "react-router";
-import Layout from "../../components/Layout";
-import ChangeHistory from "../../components/ChangeHistory";
-import s from "./styles.css";
-
+import Button from 'react-mdl/lib/Button';
+import FABButton from 'react-mdl/lib/FABButton';
+import Spinner from 'react-mdl/lib/Spinner';
+import { Card, CardTitle, CardText, CardActions } from 'react-mdl/lib/Card';
+import { Dialog, DialogContent, DialogActions } from 'react-mdl/lib/Dialog';
+import { Link } from 'react-router';
+import Layout from '../../components/Layout';
+import ChangeHistory from '../../components/ChangeHistory';
+import s from './styles.css';
 import { loadNotes } from '../../core/action/notes.action.js';
 
-var moment = require('moment');
-
+const moment = require('moment');
 moment.locale('zh-CN');
 
 class NoteCreatePage extends React.Component {
+  static propTypes = {
+    loadNotes: PropTypes.function,
+    articles: PropTypes.object,
+  };
+
   constructor(props) {
     super(props);
     let content = localStorage.getItem('content');
@@ -31,6 +33,11 @@ class NoteCreatePage extends React.Component {
 
     this.handleOpenDialog = this.handleOpenDialog.bind(this);
     this.handleCloseDialog = this.handleCloseDialog.bind(this);
+  }
+
+  componentDidMount() {
+    document.title = 'Home';
+    this.props.loadNotes();
   }
 
   handleOpenDialog(title, path) {
@@ -53,60 +60,54 @@ class NoteCreatePage extends React.Component {
     });
   }
 
-  componentDidMount() {
-    document.title = "Home";
-    var self = this;
-
-    this.props.loadNotes();
-  }
-
   renderTime(time) {
     return moment(time).fromNow();
   }
 
   render() {
     if (this.props.articles) {
-      let _articles = this.props.articles.toArray();
+      const articles = this.props.articles.toArray();
 
       return (
         <Layout className={s.content}>
           <div className="note-list">
-            { _articles.map((a, i) => {
-              let article = a.toObject();
+            {articles.map((a, i) => {
+              const article = a.toObject();
               return (
-              <Card shadow={0} key={i} style={{width: '100%', margin: '0 auto 16px'}}>
-                <CardTitle>{article.title}</CardTitle>
-                <CardText>{article.description}</CardText>
-                <CardActions border style={{ textAlign: 'center' }}>
-                  <Button colored>创建于: {this.renderTime(article.created)}</Button>
-                  <Button colored>修改于: {this.renderTime(article.updated)}</Button>
-                </CardActions>
-                <CardActions border>
-                  <ul className={s.cardAction} style={{ textAlign: 'center', paddingLeft: '0' }}>
-                    <li>
-                      <Link to={`/notes/edit/${article.id}`}>
-                        <Button raised ripple>编辑</Button>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to={`/notes/view/${article.id}`}>
-                        <Button raised ripple>查看</Button>
-                      </Link>
-                    </li>
-                    <li>
-                      <Button
-                        colored
-                        onClick={() => this.handleOpenDialog(article.title, article.path)}
-                        raised
-                        ripple
-                      >
-                        历史
-                      </Button></li>
-                  </ul>
-                </CardActions>
-              </Card>
-              )}
-            )}
+                <Card shadow={0} key={i} style={{ width: '100%', margin: '0 auto 16px' }}>
+                  <CardTitle>{article.title}</CardTitle>
+                  <CardText>{article.description}</CardText>
+                  <CardActions border style={{ textAlign: 'center' }}>
+                    <Button colored>创建于: {this.renderTime(article.created)}</Button>
+                    <Button colored>修改于: {this.renderTime(article.updated)}</Button>
+                  </CardActions>
+                  <CardActions border>
+                    <ul className={s.cardAction} style={{ textAlign: 'center', paddingLeft: '0' }}>
+                      <li>
+                        <Link to={`/notes/edit/${article.id}`}>
+                          <Button raised ripple>编辑</Button>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/notes/view/${article.id}`}>
+                          <Button raised ripple>查看</Button>
+                        </Link>
+                      </li>
+                      <li>
+                        <Button
+                          colored
+                          onClick={() => this.handleOpenDialog(article.title, article.path)}
+                          raised
+                          ripple
+                        >
+                          历史
+                        </Button></li>
+                    </ul>
+                  </CardActions>
+                </Card>
+              );
+            }
+          )};
           </div>
 
           <Link to="/notes/create">
@@ -140,8 +141,8 @@ class NoteCreatePage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    articles: state.notes
-  }
+    articles: state.notes,
+  };
 }
 
 export default connect(mapStateToProps, { loadNotes })(NoteCreatePage);

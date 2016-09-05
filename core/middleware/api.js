@@ -94,20 +94,19 @@ export default ({ dispatch, getState }) => next => action => {
     return next(action);
   }
 
-  const promiseCreators = action[CHAIN_API].map((apiActionCreator) => {
-    return createRequestPromise(apiActionCreator, next, getState, dispatch);
-  });
+  const promiseCreators = action[CHAIN_API].map(
+    (apiActionCreator) => createRequestPromise(apiActionCreator, next, getState, dispatch)
+  );
 
+  // eslint-disable-next-line arrow-body-style
   const overall = promiseCreators.reduce((promise, creator) => {
-    return promise.then((body) => {
-      return creator(body);
-    });
+    return promise.then((body) => creator(body));
   }, Promise.resolve());
 
-  overall.finally(()=> {
+  overall.finally(() => {
     deferred.resolve();
-  }).catch(()=> {});
+  }).catch(() => {});
 
   return deferred.promise;
-}
+};
 
