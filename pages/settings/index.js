@@ -51,6 +51,9 @@ class SettingsPage extends React.Component {
       NOTES_REPO: event.target.value,
     });
     localStorage.setItem('settings.repo', event.target.value);
+    const splitValue = event.target.value.split('/');
+    localStorage.setItem('settings.repo.username', splitValue[0]);
+    localStorage.setItem('settings.repo.reponame', splitValue[1]);
   }
 
   handleIdeasRepoChange(event) {
