@@ -115,7 +115,7 @@ class NotesCreatePage extends React.Component {
                 console.log('update API successful');
               }
               if (err) {
-                console.log(err);
+                alert(err);
               }
             }
           );

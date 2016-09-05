@@ -45,9 +45,6 @@ class NoteViewPage extends React.Component {
             isDataReady: true,
           });
         });
-    } else {
-      console.log('-----------------------');
-      console.log('Back to Home and Refresh');
     }
   }
 

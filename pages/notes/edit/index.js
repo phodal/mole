@@ -55,9 +55,6 @@ class NoteEditPage extends React.Component {
             isDataReady: true,
           });
         });
-    } else {
-      console.log('-----------------------');
-      console.log('Back to Home and Refresh');
     }
   }
 
@@ -123,7 +120,7 @@ class NoteEditPage extends React.Component {
         console.log('commit successful');
       }
       if (err) {
-        console.log(err);
+        alert(err);
       }
     });
   }
