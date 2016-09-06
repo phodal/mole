@@ -37,7 +37,13 @@ class NoteCreatePage extends React.Component {
 
   componentDidMount() {
     document.title = 'Home';
-    this.props.loadNotes();
+
+    const ideas = localStorage.getItem('settings.repo');
+    if (ideas === null) {
+      this.state.settingIssue = true;
+    } else {
+      this.props.loadNotes();
+    }
   }
 
   handleOpenDialog(title, path) {
@@ -129,6 +135,14 @@ class NoteCreatePage extends React.Component {
               <Button onClick={this.handleCloseDialog}>关闭</Button>
             </DialogActions>
           </Dialog>
+        </Layout>
+      );
+    }
+
+    if (this.state.settingIssue) {
+      return (
+        <Layout className={s.content}>
+          您当前未设置Repo
         </Layout>
       );
     }
