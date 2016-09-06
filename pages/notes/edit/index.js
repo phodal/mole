@@ -97,19 +97,21 @@ class NoteEditPage extends React.Component {
 
   doCommit(content) {
     const token = localStorage.getItem('settings.token');
-    const username = localStorage.getItem('settings.username');
+    const committer = localStorage.getItem('settings.username');
     const email = localStorage.getItem('settings.email');
+    const username = localStorage.getItem('settings.repo.username');
+    const reponame = localStorage.getItem('settings.repo.reponame');
 
     const path = this.basicArticleInfo.path;
     const github = new GitHubApi({
       token,
       auth: 'oauth',
     });
-    const repo = github.getRepo('phodal', 'mole-test');
+    const repo = github.getRepo(username, reponame);
 
     const options = {
       committer: {
-        name: username,
+        name: committer,
         email,
       },
     };
