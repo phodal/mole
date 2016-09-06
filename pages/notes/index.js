@@ -42,7 +42,9 @@ class NoteCreatePage extends React.Component {
 
   handleOpenDialog(title, path) {
     const self = this;
-    const url = `https://api.github.com/repos/phodal/mole-test/commits?path=${path}`;
+    const username = localStorage.getItem('settings.repo.username');
+    const reponame = localStorage.getItem('settings.repo.reponame');
+    const url = `https://api.github.com/repos/${username}/${reponame}/commits?path=${path}`;
     fetch(url)
       .then(response => response.json())
       .then(data => {
