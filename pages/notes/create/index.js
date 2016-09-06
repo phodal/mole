@@ -80,8 +80,6 @@ class NotesCreatePage extends React.Component {
       .then(response => response.json())
       .then(data => {
         const content = JSON.stringify(data.content);
-
-        localStorage.setItem('base_url', data.source);
         localStorage.setItem('content', content);
 
         const path = `notes/${self.state.url}.md`;

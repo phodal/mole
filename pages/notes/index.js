@@ -42,6 +42,9 @@ class NoteCreatePage extends React.Component {
     if (ideas === null) {
       this.state.settingIssue = true;
     } else {
+      const username = localStorage.getItem('settings.repo.username');
+      const reponame = localStorage.getItem('settings.repo.reponame');
+      localStorage.setItem('base_url', `https://${username}.github.io/${reponame}`);
       this.props.loadNotes();
     }
   }
