@@ -46,13 +46,17 @@ class IdeasCreatePage extends React.Component {
     }
 
     const token = localStorage.getItem('settings.token');
+    const ideasRepo = localStorage.getItem('settings.ideas');
+    const splitValue = ideasRepo.split('/');
+    const username = splitValue[0];
+    const reponame = splitValue[1];
 
     const self = this;
     const github = new GitHubApi({
       token,
       auth: 'oauth',
     });
-    const remoteIssue = github.getIssues('phodal', 'mole-test');
+    const remoteIssue = github.getIssues(username, reponame);
 
     const issue = {
       title: this.state.title,
