@@ -26,7 +26,12 @@
   </platform>
 
   <platform name="android">
-    <!-- you can use any density that exists in the Android project -->
+        <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
+    <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
+    <icon src="resources/android/icon/drawable-hdpi-icon.png" density="hdpi"/>
+    <icon src="resources/android/icon/drawable-xhdpi-icon.png" density="xhdpi"/>
+    <icon src="resources/android/icon/drawable-xxhdpi-icon.png" density="xxhdpi"/>
+    <icon src="resources/android/icon/drawable-xxxhdpi-icon.png" density="xxxhdpi"/>
     <splash src="res/screen/android/splash-land-hdpi.png" density="land-hdpi"/>
     <splash src="res/screen/android/splash-land-ldpi.png" density="land-ldpi"/>
     <splash src="res/screen/android/splash-land-mdpi.png" density="land-mdpi"/>
