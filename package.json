@@ -89,7 +89,21 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack-hot-middleware": "^2.12.2",
+    "karma": "^1.0.0",
+    "karma-coverage": "^1.0.0",
+    "karma-mocha": "^1.0.1",
+    "karma-mocha-reporter": "^2.0.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-webpack-with-fast-source-maps": "^1.9.2",
+    "chai-as-promised": "^5.3.0",
+    "chai-enzyme": "^0.5.0",
+    "cheerio": "^0.20.0",
+    "enzyme": "^2.0.0",
+    "react-addons-test-utils": "^15.0.0",
+    "redbox-react": "^1.2.10",
+    "sinon": "^1.17.5",
+    "sinon-chai": "^2.8.0",
   },
   "babel": {
     "presets": [
