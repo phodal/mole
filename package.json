@@ -103,7 +103,7 @@
     "react-addons-test-utils": "^15.0.0",
     "redbox-react": "^1.2.10",
     "sinon": "^1.17.5",
-    "sinon-chai": "^2.8.0",
+    "sinon-chai": "^2.8.0"
   },
   "babel": {
     "presets": [
