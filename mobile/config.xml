@@ -3,7 +3,7 @@
         xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>墨乐</name>
   <description>
-    墨乐 - GitHub上的云笔记
+    墨乐 - Mole, a github-base note
   </description>
   <author email="h@phodal.com" href="https://www.phodal.com/">
     Phodal Huang
