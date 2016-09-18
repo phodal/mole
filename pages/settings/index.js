@@ -10,7 +10,7 @@ class SettingsPage extends React.Component {
     function getLSItem(key) {
       const result = localStorage.getItem(key);
       if (result === null) {
-        return '';
+        return null;
       }
       return result;
     }
@@ -51,6 +51,7 @@ class SettingsPage extends React.Component {
       NOTES_REPO: event.target.value,
     });
     localStorage.setItem('settings.repo', event.target.value);
+
     const splitValue = event.target.value.split('/');
     localStorage.setItem('settings.repo.username', splitValue[0]);
     localStorage.setItem('settings.repo.reponame', splitValue[1]);
@@ -60,6 +61,7 @@ class SettingsPage extends React.Component {
     this.setState({
       IDEAS_REPO: event.target.value,
     });
+
     localStorage.setItem('settings.ideas', event.target.value);
   }
 
@@ -67,6 +69,7 @@ class SettingsPage extends React.Component {
     this.setState({
       GITHUB_TOKEN: event.target.value,
     });
+
     localStorage.setItem('settings.token', event.target.value);
   }
 
@@ -74,6 +77,7 @@ class SettingsPage extends React.Component {
     this.setState({
       COMMIT_USERNAME: event.target.value,
     });
+
     localStorage.setItem('settings.username', event.target.value);
   }
 
@@ -81,6 +85,7 @@ class SettingsPage extends React.Component {
     this.setState({
       COMMIT_EMAIL: event.target.value,
     });
+
     localStorage.setItem('settings.email', event.target.value);
   }
 
