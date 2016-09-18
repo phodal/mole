@@ -98,8 +98,6 @@ class SettingsPage extends React.Component {
       <Layout className={s.content}>
         <Textfield
           onChange={this.handleNotesRepoChange}
-          pattern="([\w\.@\:/\-~]+)?"
-          error="Input is not a valid GitHub url!"
           label="云笔记 Repo"
           floatingLabel
           value={this.state.NOTES_REPO}
@@ -107,8 +105,6 @@ class SettingsPage extends React.Component {
         />
         <Textfield
           onChange={this.handleIdeasRepoChange}
-          pattern="([\w\.@\:/\-~]+)?"
-          error="Input is not a valid GitHub url!"
           label="Ideas Repo"
           floatingLabel
           value={this.state.IDEAS_REPO}
