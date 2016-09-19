@@ -1,4 +1,6 @@
-                            The MIT License
+The MIT License
+
+Copyright (c) 2016-present, Phodal Huang. All rights reserved.
 
 Copyright (c) 2015-present Kriasoft, LLC. All rights reserved.
 
