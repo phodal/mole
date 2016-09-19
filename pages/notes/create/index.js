@@ -1,3 +1,5 @@
+/* eslint-disable no-console, no-alert */
+
 import React from 'react';
 import NoteLayout from '../../../components/NoteLayout';
 import Textfield from 'react-mdl/lib/Textfield';

@@ -1,3 +1,5 @@
+/* eslint-disable no-console, no-alert */
+
 import React, { PropTypes } from 'react';
 import NoteLayout from '../../../components/NoteLayout';
 import s from './styles.css';
