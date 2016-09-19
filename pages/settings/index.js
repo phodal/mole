@@ -142,7 +142,7 @@ class SettingsPage extends React.Component {
             >
 
               <Radio value="markdown" ripple>Markdown</Radio>
-              <Radio value="rich">富文本(Beta)</Radio>
+              <Radio value="rich" ripple>富文本(Beta)</Radio>
             </RadioGroup>
           </List>
         </div>
